@@ -15,6 +15,10 @@ class TestMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if ($request->input('token') !== 'my-secret-token') {
+            return $next($request);
+        }
+ 
         return $next($request);
     }
 }
