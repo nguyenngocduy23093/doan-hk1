@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// uia uiia uia uia uia uia uia uia uia uia uia aua
+Route::get('', [TestController::class, 'index'])
+->middleware('testMiddleware');
