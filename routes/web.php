@@ -11,6 +11,7 @@ Route::get('/test', [TestController::class, 'index'])
 Route::group(['prefix' => ''], function () {
     //// Guest
     Route::get('/'); // trang chủ (home)
+    Route::get('/search'); // tìm kiếm (search bar)
     Route::get('/about_us'); // trang về chúng tôi (about us)
     Route::get('/contact'); // trang contact
     Route::get('/buy'); // trang danh mục cho mua (category = buy)
