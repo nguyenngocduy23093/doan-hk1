@@ -5,7 +5,7 @@ use App\Http\Controllers\TestController;
 
 // KO ĐC XÓA CÁI NÀY
 Route::get('/test', [TestController::class, 'index'])
-->middleware('testMiddleware');
+->middleware(['testMiddleware', 'loggedinMiddleware']);
 
 // Routes
 Route::group(['prefix' => ''], function () {
@@ -20,13 +20,13 @@ Route::group(['prefix' => ''], function () {
     Route::get('/property/{id}'); // trang chi tiết BDS
     
     // Register
-    Route::group(['prefix' => 'register'], function () {
+    Route::group(['prefix' => 'register', 'middleware' => 'loggedinMiddleware'], function () {
         Route::get('/'); // trang điền form
         Route::post('/creating'); // check và tạo account mới
     });
 
     // Log in
-    Route::group(['prefix' => 'login'], function () {
+    Route::group(['prefix' => 'login', 'middleware' => 'loggedinMiddleware'], function () {
         Route::get('/'); // trang điền form
         
         Route::post('/checking'); // check và redirect tới trang chủ
@@ -37,9 +37,9 @@ Route::group(['prefix' => ''], function () {
     
     //// User (Logged In/Đã Đăng Nhập) 
 
-    Route::post('/logout'); // đăng xuất user
+    Route::post('/logout')->middleware('userMiddleware'); // đăng xuất user
     // Settings
-    Route::group(['prefix' => 'settings'], function () {
+    Route::group(['prefix' => 'settings', 'middleware' => 'userMiddleware'], function () {
         Route::get('/'); // trang settings
         Route::get('/change_password'); // trang thay đổi mật khẩu
 
@@ -48,13 +48,13 @@ Route::group(['prefix' => ''], function () {
     });
 
     // Feedback
-    Route::group(['prefix' => 'feedback'], function () {
+    Route::group(['prefix' => 'feedback', 'middleware' => 'userMiddleware'], function () {
         Route::get('/'); // trang điền form
         Route::post('/sending'); // check và gửi form
     });
 
     //// Admin (role = admin)
-    Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => 'adminMiddleware'], function () {
       Route::get('/logout'); // đăng xuất admin
 
       // Dashboard
@@ -106,4 +106,10 @@ Route::group(['prefix' => ''], function () {
           });
       });
     });
+});
+
+
+// PREVENT 404 ERROR
+Route::fallback(function () {
+    return redirect('/');
 });

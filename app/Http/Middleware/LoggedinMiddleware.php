@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class TestMiddleware
+class LoggedinMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,10 @@ class TestMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->session()->has('token')) {
+        if (!$request -> session() -> has('user_verified')) {
             return $next($request);
         }
-        
-        return $next($request);
+
+        return redirect('/');
     }
 }
