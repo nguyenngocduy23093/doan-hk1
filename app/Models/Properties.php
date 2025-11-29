@@ -12,6 +12,7 @@ class Properties extends Model
     protected $fillable = [
         "title",
         "price",
+        "image_main_url",
         "location",
         "description",
         "type",
@@ -21,5 +22,6 @@ class Properties extends Model
         "area",
         "furnishing",
         "amenities",
+        "gps"
     ];
 }
