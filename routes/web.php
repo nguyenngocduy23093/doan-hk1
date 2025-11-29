@@ -2,9 +2,107 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PropertyController; // Gọi Controller vừa tạo
 
-// xóa cái này ko sao nha :P
-Route::get('/', [TestController::class, 'index'])
+// KO ĐC XÓA CÁI NÀY
+Route::get('/test', [TestController::class, 'index'])
 ->middleware('testMiddleware');
+
+// Routes
+Route::group(['prefix' => ''], function () {
+    //// Guest
+    Route::get('/'); // trang chủ (home)
+    Route::get('/about_us'); // trang về chúng tôi (about us)
+    Route::get('/contact'); // trang contact
+    Route::get('/buy'); // trang danh mục cho mua (category = buy)
+    Route::get('/rent'); // trang danh mục cho thuê (category = rent)
+    Route::get('/featured'); // trang danh mục (category = rent)
+    Route::get('/property/{id}'); // trang chi tiết BDS
+    
+    // Register
+    Route::group(['prefix' => 'register'], function () {
+        Route::get('/'); // trang điền form
+        Route::post('/creating'); // check và tạo account mới
+    });
+
+    // Log in
+    Route::group(['prefix' => 'login'], function () {
+        Route::get('/'); // trang điền form
+        
+        Route::post('/checking'); // check và redirect tới trang chủ
+    });
+
+    // Inquiry
+    Route::post('inquiry/sending'); // check và gửi lên database
+    
+    //// User (Logged In/Đã Đăng Nhập) 
+
+    Route::post('/logout'); // đăng xuất user
+    // Settings
+    Route::group(['prefix' => 'settings'], function () {
+        Route::get('/'); // trang settings
+        Route::get('/change_password'); // trang thay đổi mật khẩu
+
+        Route::post('/update_new_password'); // thay đổi password (mật khẩu)
+        Route::post('/updating'); // thay đổi (tên, hình đại diện, v.v)
+    });
+
+    // Feedback
+    Route::group(['prefix' => 'feedback'], function () {
+        Route::get('/'); // trang điền form
+        Route::post('/sending'); // check và gửi form
+    });
+
+    //// Admin (role = admin)
+    Route::group(['prefix' => 'admin'], function () {
+      Route::get('/logout'); // đăng xuất admin
+
+      // Dashboard
+      Route::group(['prefix' => 'dashboard'], function () {
+          Route::get('/'); // trang chủ của admin
+
+          // Quản lý Users
+          Route::group(['prefix' => 'users'], function () {
+            Route::get('/'); // trang chủ của users
+
+            Route::get('/{id}'); // trang detail
+            Route::get('/{id}/edit'); // trang edit
+            Route::get('/add'); // trang add
+
+            Route::post('/updating'); // post cho edit
+            Route::post('/creating'); // post cho add
+            Route::post('/delete'); // xóa
+          });
+
+          // Quản lý Properties (BDS)
+          Route::group(['prefix' => 'properties'], function () {
+            Route::get('/'); // trang chủ của properties
+
+            Route::get('/{id}'); // trang detail
+            Route::get('/{id}/edit'); // trang edit
+            Route::get('/add'); // trang add
+
+            Route::post('/updating'); // post cho edit
+            Route::post('/creating'); // post cho add
+            Route::post('/delete'); // xóa 
+          });
+
+          // Quản lý Inquiries
+          Route::group(['prefix' => 'inquiries'], function () {
+            Route::get('/'); // trang chủ của inquiries
+
+            Route::get('/{id}'); // trang detail
+
+            Route::post('/delete'); // xóa 
+          });
+
+          // Quản lý Feedback (Nhận Xét)
+          Route::group(['prefix' => 'feedback'], function () {
+            Route::get('/'); // trang chủ của feedback
+
+            Route::get('/{id}'); // trang detail
+
+            Route::post('/delete'); // xóa 
+          });
+      });
+    });
+});
