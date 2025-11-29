@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Property;
+use App\Models\Properties;
 
 class PropertyController extends Controller
 {
     // Hàm hiển thị trang chủ (Bạn đã có)
     public function index()
     {
-        $properties = Property::all();
+        $properties = Properties::all();
         return view('welcome', compact('properties'));
     }
 

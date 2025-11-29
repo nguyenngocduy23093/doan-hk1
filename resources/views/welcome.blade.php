@@ -70,10 +70,10 @@
             @foreach($properties as $property)
             <div class="col-md-4">
                 <div class="card property-card h-100 shadow-sm">
-                    <img src="{{ $property->image_thumbnail }}" class="card-img-top" alt="{{ $property->title }}">
+                    <img src="{{ $property->main_image_url }}" class="card-img-top" alt="{{ $property->title }}">
                     
                     <div class="card-body">
-                        <span class="badge bg-{{ $property->type == 'buy' ? 'success' : 'info' }} mb-2">
+                        <span class="badge bg-{{ $property->category ? 'success' : 'info' }} mb-2">
                             {{ $property->type == 'buy' ? 'Cần Bán' : 'Cho Thuê' }}
                         </span>
 
