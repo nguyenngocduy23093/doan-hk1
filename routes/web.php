@@ -8,7 +8,7 @@ use App\Http\Controllers\guest\GuestController;
 Route::group(['prefix' => ''], function () {
     //// Guest
     Route::get('/', [GuestController::class, 'home']); // trang chủ (home)
-    Route::get('/search'); // tìm kiếm (search bar)
+    Route::get('/search'); // trang tìm kiếm (search bar)
     Route::get('/about_us', [GuestController::class, 'about_us']); // trang về chúng tôi (about us)
     Route::get('/contact', [GuestController::class, 'contact']); // trang contact
     Route::get('/buy', [GuestController::class, 'buy']); // trang danh mục cho mua (category = buy)
@@ -29,8 +29,9 @@ Route::group(['prefix' => ''], function () {
         Route::post('/checking'); // check và redirect tới trang chủ
     });
 
-    // Inquiry
+    // POST METHOD
     Route::post('inquiry/sending'); // check và gửi lên database
+    Route::post('searching'); // check và đưa kết quả
     
     //// User (Logged In/Đã Đăng Nhập) 
 
