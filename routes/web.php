@@ -2,7 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+
+/// Guest
 use App\Http\Controllers\guest\GuestController;
+use App\Http\Controllers\guest\LoginController;
+use App\Http\Controllers\guest\RegisterController;
+use App\Http\Controllers\guest\CategoriesController;
+
+/// User
+/// Admin
 
 // Routes
 Route::group(['prefix' => ''], function () {
@@ -11,20 +19,20 @@ Route::group(['prefix' => ''], function () {
     Route::get('/search'); // trang tìm kiếm (search bar)
     Route::get('/about_us', [GuestController::class, 'about_us']); // trang về chúng tôi (about us)
     Route::get('/contact', [GuestController::class, 'contact']); // trang contact
-    Route::get('/buy', [GuestController::class, 'buy']); // trang danh mục cho mua (category = buy)
-    Route::get('/rent', [GuestController::class, 'rent']); // trang danh mục cho thuê (category = rent)
-    Route::get('/featured', [GuestController::class, 'featured']); // trang danh mục nổi bật (category = rent)
+    Route::get('/buy', [CategoriesController::class, 'buy']); // trang danh mục cho mua (category = buy)
+    Route::get('/rent', [CategoriesController::class, 'rent']); // trang danh mục cho thuê (category = rent)
+    Route::get('/featured', [CategoriesController::class, 'featured']); // trang danh mục nổi bật (category = rent)
     Route::get('/property/{id}'); // trang chi tiết BDS
     
     // Register
     Route::group(['prefix' => 'register', 'middleware' => 'loggedinMiddleware'], function () {
-        Route::get('/'); // trang điền form
+        Route::get('/', [RegisterController::class, 'register']); // trang điền form
         Route::post('/creating'); // check và tạo account mới
     });
 
     // Log in
     Route::group(['prefix' => 'login', 'middleware' => 'loggedinMiddleware'], function () {
-        Route::get('/'); // trang điền form
+        Route::get('/', [LoginController::class, 'login']); // trang điền form
         
         Route::post('/checking'); // check và redirect tới trang chủ
     });

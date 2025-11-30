@@ -12,4 +12,9 @@
   <li><a href="{{ url('/contact') }}">Contact</a></li>
 </ul>
 
+<ul>
+  <li><a href="{{ url('/register') }}">Sign up</a></li>
+  <li><a href="{{ url('/login') }}">Log in</a></li>
+</ul>
+
 @yield('content')
