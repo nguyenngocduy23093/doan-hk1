@@ -97,7 +97,7 @@
     <header class="header">
         <div class="container">
             <nav class="nav">
-                <a href="{{ route('home') }}" class="logo">Real Estate Pro</a>
+                <a href="{{ route('home') }}" class="logo">RealEstatePro</a>
                 <ul class="nav-links">
                     <li><a href="{{ route('home') }}">Trang chủ</a></li>
                     <li><a href="{{ route('buy') }}">Mua</a></li>
