@@ -43,7 +43,7 @@ Route::group(['prefix' => ''], function () {
     
     //// User (Logged In/Đã Đăng Nhập) 
 
-    Route::post('/logout')->middleware('userMiddleware'); // đăng xuất user
+    Route::post('/logout')->middleware('userMiddleware'); // đăng xuất
     // Settings
     Route::group(['prefix' => 'settings', 'middleware' => 'userMiddleware'], function () {
         Route::get('/'); // trang settings
