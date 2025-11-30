@@ -4,10 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\guest\GuestController;
 
-// KO ĐC XÓA CÁI NÀY
-Route::get('/test', [TestController::class, 'index'])
-->middleware(['testMiddleware', 'loggedinMiddleware']);
-
 // Routes
 Route::group(['prefix' => ''], function () {
     //// Guest
