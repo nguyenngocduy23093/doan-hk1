@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\guest\GuestController;
 
 // KO ĐC XÓA CÁI NÀY
 Route::get('/test', [TestController::class, 'index'])
@@ -10,13 +11,13 @@ Route::get('/test', [TestController::class, 'index'])
 // Routes
 Route::group(['prefix' => ''], function () {
     //// Guest
-    Route::get('/'); // trang chủ (home)
+    Route::get('/', [GuestController::class, 'home']); // trang chủ (home)
     Route::get('/search'); // tìm kiếm (search bar)
-    Route::get('/about_us'); // trang về chúng tôi (about us)
-    Route::get('/contact'); // trang contact
-    Route::get('/buy'); // trang danh mục cho mua (category = buy)
-    Route::get('/rent'); // trang danh mục cho thuê (category = rent)
-    Route::get('/featured'); // trang danh mục (category = rent)
+    Route::get('/about_us', [GuestController::class, 'about_us']); // trang về chúng tôi (about us)
+    Route::get('/contact', [GuestController::class, 'contact']); // trang contact
+    Route::get('/buy', [GuestController::class, 'buy']); // trang danh mục cho mua (category = buy)
+    Route::get('/rent', [GuestController::class, 'rent']); // trang danh mục cho thuê (category = rent)
+    Route::get('/featured', [GuestController::class, 'featured']); // trang danh mục nổi bật (category = rent)
     Route::get('/property/{id}'); // trang chi tiết BDS
     
     // Register
