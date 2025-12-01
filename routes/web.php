@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\guest\HomeController;
-use App\Http\Controllers\guest\PropertyController;
+use App\Http\Controllers\guest\LoginController;
+use App\Http\Controllers\user\LogoutController;
 use App\Http\Controllers\guest\SearchController;
 use App\Http\Controllers\guest\ContactController;
+use App\Http\Controllers\guest\PropertyController;
 use App\Http\Controllers\guest\RegisterController;
 
 // KO ĐC XÓA CÁI NÀY
@@ -33,9 +35,9 @@ Route::group(['prefix' => ''], function () {
 
     // Log in
     Route::group(['prefix' => 'login', 'middleware' => 'loggedinMiddleware'], function () {
-        Route::get('/'); // trang điền form
+        Route::get('/', [LoginController::class, 'index']); // trang điền form
         
-        Route::post('/checking'); // check và redirect tới trang chủ
+        Route::post('/checking', [LoginController::class, 'checking']); // check và redirect tới trang chủ
     });
 
     // Inquiry
@@ -43,7 +45,7 @@ Route::group(['prefix' => ''], function () {
     
     //// User (Logged In/Đã Đăng Nhập) 
 
-    Route::post('/logout')->middleware('userMiddleware'); // đăng xuất user
+    Route::get('/logout', [LogoutController::class, 'index'])->middleware('userMiddleware'); // đăng xuất user
     // Settings
     Route::group(['prefix' => 'settings', 'middleware' => 'userMiddleware'], function () {
         Route::get('/'); // trang settings

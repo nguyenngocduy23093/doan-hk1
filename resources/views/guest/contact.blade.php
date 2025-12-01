@@ -138,66 +138,6 @@
             <p>+84 123 456 789<br>+84 987 654 321</p>
         </div>
     </div>
-
-    <!-- Contact Form -->
-    <div class="contact-form">
-        <h2>✉️ Gửi tin nhắn cho chúng tôi</h2>
-        <form action="{{ route('inquiry.send') }}" method="POST">
-            @csrf
-            
-            <div class="form-group">
-                <label for="name">Họ và tên *</label>
-                <input type="text" 
-                       id="name" 
-                       name="name" 
-                       value="{{ old('name') }}" 
-                       required
-                       placeholder="Nhập họ tên của bạn">
-                @error('name')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" 
-                       id="email" 
-                       name="email" 
-                       value="{{ old('email') }}" 
-                       required
-                       placeholder="example@email.com">
-                @error('email')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="title">Tiêu đề *</label>
-                <input type="text" 
-                       id="title" 
-                       name="title" 
-                       value="{{ old('title') }}" 
-                       required
-                       placeholder="Tiêu đề tin nhắn">
-                @error('title')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="message">Nội dung *</label>
-                <textarea id="message" 
-                          name="message" 
-                          required
-                          placeholder="Nhập nội dung tin nhắn của bạn...">{{ old('message') }}</textarea>
-                @error('message')
-                    <div class="error-message">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <button type="submit" class="btn btn-primary">📤 Gửi tin nhắn</button>
-        </form>
-    </div>
 </div>
 
 @endsection

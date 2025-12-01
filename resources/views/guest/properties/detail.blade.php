@@ -239,15 +239,17 @@
             @csrf
             <input type="hidden" name="property_id" value="{{ $property->property_id }}">
             
-            <div class="form-group">
-                <label>Họ tên *</label>
-                <input type="text" name="name" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Email *</label>
-                <input type="email" name="email" required>
-            </div>
+            @if (!session('user_verified'))
+                <div class="form-group">
+                    <label>Họ tên *</label>
+                    <input type="text" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>    
+            @endif
             
             <div class="form-group">
                 <label>Tiêu đề *</label>

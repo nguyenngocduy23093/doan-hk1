@@ -107,6 +107,7 @@
                     <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                     @if(session('user_verified'))
                         <li><a href="/settings">{{ session('user_name') }}</a></li>
+                        <li><a href="/logout">Log out</a></li>
                     @else
                         <li><a href="{{ route('register') }}">Đăng ký</a></li>
                         <li><a href="/login">Đăng nhập</a></li>
