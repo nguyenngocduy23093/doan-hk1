@@ -7,6 +7,7 @@ use App\Http\Controllers\guest\LoginController;
 use App\Http\Controllers\user\LogoutController;
 use App\Http\Controllers\guest\SearchController;
 use App\Http\Controllers\guest\ContactController;
+use App\Http\Controllers\user\SettingsController;
 use App\Http\Controllers\guest\PropertyController;
 use App\Http\Controllers\guest\RegisterController;
 
@@ -48,11 +49,11 @@ Route::group(['prefix' => ''], function () {
     Route::get('/logout', [LogoutController::class, 'index'])->middleware('userMiddleware'); // đăng xuất user
     // Settings
     Route::group(['prefix' => 'settings', 'middleware' => 'userMiddleware'], function () {
-        Route::get('/'); // trang settings
-        Route::get('/change_password'); // trang thay đổi mật khẩu
+        Route::get('/', [SettingsController::class, 'index']); // trang settings
+        Route::get('/change_password', [SettingsController::class, '']); // trang thay đổi mật khẩu
 
-        Route::post('/update_new_password'); // thay đổi password (mật khẩu)
-        Route::post('/updating'); // thay đổi (tên, hình đại diện, v.v)
+        Route::post('/update_new_password', [SettingsController::class, '']); // thay đổi password (mật khẩu)
+        Route::post('/updating', [SettingsController::class, '']); // thay đổi (tên, hình đại diện, v.v)
     });
 
     // Feedback

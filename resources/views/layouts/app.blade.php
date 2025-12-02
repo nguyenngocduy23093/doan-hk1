@@ -107,7 +107,7 @@
                     <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                     @if(session('user_verified'))
                         <li><a href="/settings">{{ session('user_name') }}</a></li>
-                        <li><a href="/logout">Log out</a></li>
+                        <li><a href="/logout">Đăng xuất</a></li>
                     @else
                         <li><a href="{{ route('register') }}">Đăng ký</a></li>
                         <li><a href="/login">Đăng nhập</a></li>
@@ -135,7 +135,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Real Estate Pro. All rights reserved.</p>
+            <p>&copy; 2025 RealEstatePro. All rights reserved.</p>
         </div>
     </footer>
 </body>

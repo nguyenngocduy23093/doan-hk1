@@ -18,25 +18,26 @@ class LoginController extends Controller
         $data = $request->post();
 
         $validated = $request->validate([
-        'name' => 'required',
+        'email' => 'required',
         'password'      => 'required',
         ]);
         
         // Detect if input is email or username
-        $input = $validated['name'];
+        $input = $validated['email'];
 
-        if (filter_var($input, FILTER_VALIDATE_EMAIL)) {
-            // User typed an email
-            $user = Users::where('email', $input)->first();
-        } else {
-            // User typed a username
-            $user = Users::where('name', $input)->first();
+        if (!filter_var($input, FILTER_VALIDATE_EMAIL)) {
+            return redirect('login')->withErrors([
+                'email' => 'Sai email',
+            ]);
         }
+
+        $user = Users::where('email', $input)->first();
+
 
         // Check if user exists and validate password
         if (!$user || !password_verify($data['password'], $user->password)) {
             return redirect('login')->withErrors([
-                'password' => 'Sai mật khẩu hoặc tên',
+                'password' => 'Sai mật khẩu hoặc email ko tồn tại',
             ]);
         }
 

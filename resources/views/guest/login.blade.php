@@ -123,9 +123,9 @@
             @csrf
             
             <div class="form-group">
-                <label for="name">Tên</label>
-                <input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="Nhập tên hoặc email" required>
-                @error('name')
+                <label for="email">Email</label>
+                <input type="text" id="name" name="email" value="{{ old('email') }}" placeholder="Nhập email" required>
+                @error('email')
                     <div class="error-message">{{ $message }}</div>
                 @enderror
             </div>
