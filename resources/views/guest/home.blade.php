@@ -3,228 +3,135 @@
 @section('title', 'Trang chủ - Real Estate Pro')
 
 @section('content')
-<style>
-    .hero {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 4rem 0;
-        text-align: center;
-        border-radius: 10px;
-        margin: 2rem 0;
-    }
-    .hero h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-    }
-    .search-box {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 10px;
-        margin-top: 2rem;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .search-form {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-    .search-form input, .search-form select {
-        flex: 1;
-        min-width: 200px;
-        padding: 0.8rem;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 1rem;
-    }
-    .btn {
-        padding: 0.8rem 2rem;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: all 0.3s;
-    }
-    .btn-primary {
-        background: #3498db;
-        color: white;
-    }
-    .btn-primary:hover {
-        background: #2980b9;
-    }
-    .section-title {
-        font-size: 2rem;
-        margin: 3rem 0 1.5rem;
-        color: #2c3e50;
-    }
-    .property-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-bottom: 3rem;
-    }
-    .property-card {
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        transition: transform 0.3s;
-    }
-    .property-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    }
-    .property-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-    .property-info {
-        padding: 1.5rem;
-    }
-    .property-title {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-        color: #2c3e50;
-    }
-    .property-price {
-        color: #e74c3c;
-        font-size: 1.3rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-    }
-    .property-location {
-        color: #7f8c8d;
-        margin-bottom: 0.5rem;
-    }
-    .property-details {
-        display: flex;
-        gap: 1rem;
-        color: #7f8c8d;
-        font-size: 0.9rem;
-    }
-    .view-all {
-        text-align: center;
-        margin: 2rem 0;
-    }
-    @media (max-width: 768px) {
-        .hero h1 {
-            font-size: 1.8rem;
-        }
-        .search-form {
-            flex-direction: column;
-        }
-        .property-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
 
-<!-- Hero Section -->
-<div class="hero">
-    <h1>Tìm ngôi nhà mơ ước của bạn</h1>
-    <p>Hàng ngàn bất động sản chất lượng đang chờ bạn khám phá</p>
-    
-    <!-- Search Box -->
-    <div class="search-box">
-        <form action="{{ route('search') }}" method="GET" class="search-form">
-            <input type="text" name="keyword" placeholder="Tìm kiếm theo tên hoặc địa điểm...">
-            <select name="category">
-                <option value="">Tất cả danh mục</option>
-                <option value="buy">Mua</option>
-                <option value="rent">Thuê</option>
-                <option value="featured">Nổi bật</option>
-            </select>
-            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-        </form>
+<div class="relative w-full bg-gradient-to-r from-bds-red to-[#ff5e57] -mt-4 pb-16 pt-12 mb-12">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Tìm ngôi nhà mơ ước của bạn</h1>
+        <p class="text-white text-lg opacity-90 mb-8">Hàng ngàn bất động sản chất lượng đang chờ bạn khám phá</p>
+        
+        <div class="bg-white p-6 rounded-lg shadow-xl max-w-4xl mx-auto transform translate-y-4">
+            <form action="{{ route('search') }}" method="GET" class="flex flex-col md:flex-row gap-3">
+                
+                <div class="flex-grow">
+                    <input type="text" name="keyword" 
+                           placeholder="Tìm kiếm theo tên hoặc địa điểm..." 
+                           class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-bds-red focus:ring-1 focus:ring-bds-red text-gray-700">
+                </div>
+
+                <div class="md:w-1/4">
+                    <select name="category" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-bds-red text-gray-700 bg-white">
+                        <option value="">Tất cả danh mục</option>
+                        <option value="buy">Mua</option>
+                        <option value="rent">Thuê</option>
+                        <option value="featured">Nổi bật</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="bg-bds-red hover:bg-bds-red-hover text-white font-bold px-8 py-3 rounded transition shadow-md whitespace-nowrap">
+                    Tìm kiếm
+                </button>
+            </form>
+        </div>
     </div>
 </div>
 
-<!-- Featured Properties -->
-@if($featuredProperties->count() > 0)
-<h2 class="section-title">🌟 Bất động sản nổi bật</h2>
-<div class="property-grid">
-    @foreach($featuredProperties as $property)
-    <a href="{{ route('property.detail', $property->property_id) }}" style="text-decoration: none; color: inherit;">
-        <div class="property-card">
-            <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" 
-                 alt="{{ $property->title }}" 
-                 class="property-image">
-            <div class="property-info">
-                <div class="property-title">{{ $property->title }}</div>
-                <div class="property-price">{{ number_format($property->price) }} VNĐ</div>
-                <div class="property-location">📍 {{ $property->location }}</div>
-                <div class="property-details">
-                    <span>🛏️ {{ $property->bedrooms }} PN</span>
-                    <span>🚿 {{ $property->bathrooms }} PT</span>
-                    <span>📐 {{ $property->area }} m²</span>
-                </div>
-            </div>
-        </div>
-    </a>
-    @endforeach
-</div>
-<div class="view-all">
-    <a href="{{ route('featured') }}" class="btn btn-primary">Xem tất cả nổi bật</a>
-</div>
-@endif
+<div class="container mx-auto px-4 pt-8">
 
-<!-- Properties for Rent -->
-@if($rentProperties->count() > 0)
-<h2 class="section-title">🏠 Bất động sản cho thuê</h2>
-<div class="property-grid">
-    @foreach($rentProperties as $property)
-    <a href="{{ route('property.detail', $property->property_id) }}" style="text-decoration: none; color: inherit;">
-        <div class="property-card">
-            <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" 
-                 alt="{{ $property->title }}" 
-                 class="property-image">
-            <div class="property-info">
-                <div class="property-title">{{ $property->title }}</div>
-                <div class="property-price">{{ number_format($property->price) }} VNĐ/tháng</div>
-                <div class="property-location">📍 {{ $property->location }}</div>
-                <div class="property-details">
-                    <span>🛏️ {{ $property->bedrooms }} PN</span>
-                    <span>🚿 {{ $property->bathrooms }} PT</span>
-                    <span>📐 {{ $property->area }} m²</span>
-                </div>
-            </div>
+    @if($featuredProperties->count() > 0)
+    <div class="mb-12">
+        <div class="flex justify-between items-end mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">🌟 Bất động sản nổi bật</h2>
+            <a href="{{ route('featured') }}" class="text-bds-red font-medium hover:underline text-sm">Xem tất cả</a>
         </div>
-    </a>
-    @endforeach
-</div>
-<div class="view-all">
-    <a href="{{ route('rent') }}" class="btn btn-primary">Xem tất cả cho thuê</a>
-</div>
-@endif
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            @foreach($featuredProperties as $property)
+            <a href="{{ route('property.detail', $property->property_id) }}" class="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+                <div class="relative h-48 bg-gray-200 overflow-hidden">
+                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" 
+                         alt="{{ $property->title }}" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2 h-12 group-hover:text-bds-red transition">
+                        {{ $property->title }}
+                    </h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-bds-red font-bold text-lg">{{ number_format($property->price) }} VNĐ</span>
+                        <span class="text-xs text-gray-500">{{ $property->area }} m²</span>
+                    </div>
+                    <div class="text-gray-500 text-sm mb-3 truncate">📍 {{ $property->location }}</div>
+                    <div class="flex gap-3 text-xs text-gray-500 border-t pt-3">
+                        <span>🛏️ {{ $property->bedrooms }} PN</span>
+                        <span>🚿 {{ $property->bathrooms }} PT</span>
+                    </div>
+                </div>
+            </a>
+            @endforeach
+        </div>
+    </div>
+    @endif
 
-<!-- Properties for Sale -->
-@if($buyProperties->count() > 0)
-<h2 class="section-title">🏡 Bất động sản bán</h2>
-<div class="property-grid">
-    @foreach($buyProperties as $property)
-    <a href="{{ route('property.detail', $property->property_id) }}" style="text-decoration: none; color: inherit;">
-        <div class="property-card">
-            <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" 
-                 alt="{{ $property->title }}" 
-                 class="property-image">
-            <div class="property-info">
-                <div class="property-title">{{ $property->title }}</div>
-                <div class="property-price">{{ number_format($property->price) }} VNĐ</div>
-                <div class="property-location">📍 {{ $property->location }}</div>
-                <div class="property-details">
-                    <span>🛏️ {{ $property->bedrooms }} PN</span>
-                    <span>🚿 {{ $property->bathrooms }} PT</span>
-                    <span>📐 {{ $property->area }} m²</span>
-                </div>
-            </div>
+    @if($rentProperties->count() > 0)
+    <div class="mb-12">
+        <div class="flex justify-between items-end mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">🏠 Bất động sản cho thuê</h2>
+            <a href="{{ route('rent') }}" class="text-bds-red font-medium hover:underline text-sm">Xem tất cả</a>
         </div>
-    </a>
-    @endforeach
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            @foreach($rentProperties as $property)
+            <a href="{{ route('property.detail', $property->property_id) }}" class="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+                <div class="relative h-48 bg-gray-200 overflow-hidden">
+                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $property->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2 h-12 group-hover:text-bds-red transition">{{ $property->title }}</h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-bds-red font-bold text-lg">{{ number_format($property->price) }} VNĐ</span>
+                        <span class="text-xs text-gray-500">{{ $property->area }} m²</span>
+                    </div>
+                    <div class="text-gray-500 text-sm mb-3 truncate">📍 {{ $property->location }}</div>
+                    <div class="flex gap-3 text-xs text-gray-500 border-t pt-3">
+                        <span>🛏️ {{ $property->bedrooms }} PN</span>
+                        <span>🚿 {{ $property->bathrooms }} PT</span>
+                    </div>
+                </div>
+            </a>
+            @endforeach
+        </div>
+    </div>
+    @endif
+
+    @if($buyProperties->count() > 0)
+    <div class="mb-16">
+        <div class="flex justify-between items-end mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">🏡 Bất động sản bán</h2>
+            <a href="{{ route('buy') }}" class="text-bds-red font-medium hover:underline text-sm">Xem tất cả</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            @foreach($buyProperties as $property)
+            <a href="{{ route('property.detail', $property->property_id) }}" class="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+                <div class="relative h-48 bg-gray-200 overflow-hidden">
+                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $property->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2 h-12 group-hover:text-bds-red transition">{{ $property->title }}</h3>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-bds-red font-bold text-lg">{{ number_format($property->price) }} VNĐ</span>
+                        <span class="text-xs text-gray-500">{{ $property->area }} m²</span>
+                    </div>
+                    <div class="text-gray-500 text-sm mb-3 truncate">📍 {{ $property->location }}</div>
+                    <div class="flex gap-3 text-xs text-gray-500 border-t pt-3">
+                        <span>🛏️ {{ $property->bedrooms }} PN</span>
+                        <span>🚿 {{ $property->bathrooms }} PT</span>
+                    </div>
+                </div>
+            </a>
+            @endforeach
+        </div>
+    </div>
+    @endif
+
 </div>
-<div class="view-all">
-    <a href="{{ route('buy') }}" class="btn btn-primary">Xem tất cả bán</a>
-</div>
-@endif
 
 @endsection

@@ -1,1 +1,0 @@
-<h1>Buy Properties</h1>
