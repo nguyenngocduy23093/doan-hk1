@@ -104,6 +104,7 @@
                     <li><a href="{{ route('rent') }}">Thuê</a></li>
                     <li><a href="{{ route('featured') }}">Nổi bật</a></li>
                     <li><a href="{{ route('search') }}">Tìm kiếm</a></li>
+                    <li><a href="{{ route('about') }}">Về chúng tôi</a></li>
                     <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                     @if(session('user_verified'))
                         <li><a href="/settings">{{ session('user_name') }}</a></li>

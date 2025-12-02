@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\guest\HomeController;
+use App\Http\Controllers\guest\AboutController;
 use App\Http\Controllers\guest\LoginController;
 use App\Http\Controllers\user\LogoutController;
 use App\Http\Controllers\guest\SearchController;
@@ -20,7 +21,7 @@ Route::group(['prefix' => ''], function () {
     //// Guest
     Route::get('/', [HomeController::class, 'index'])->name('home'); // trang chủ (home)
     Route::get('/search', [SearchController::class, 'search'])->name('search'); // tìm kiếm (search bar)
-    Route::get('/about_us'); // trang về chúng tôi (about us)
+    Route::get('/about_us', [AboutController::class, 'index'])->name('about'); // trang về chúng tôi (about us)
     Route::get('/contact', [ContactController::class, 'index'])->name('contact'); // trang contact
     Route::get('/buy', [PropertyController::class, 'listing'])->defaults('category', 'buy')->name('buy'); // trang danh mục cho mua (category = buy)
     Route::get('/rent', [PropertyController::class, 'listing'])->defaults('category', 'rent')->name('rent'); // trang danh mục cho thuê (category = rent)

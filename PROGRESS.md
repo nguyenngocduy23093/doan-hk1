@@ -2,7 +2,7 @@
 
 ## ✅ Đã hoàn thành
 
-### 1. **Homepage** (70% - Backend + View hoàn thành)
+### 1. **Homepage** (100% - Hoàn thành)
 - ✅ Controller: `HomeController.php`
   - Lấy 6 BDS featured mới nhất
   - Lấy 6 BDS cho thuê mới nhất
@@ -16,7 +16,7 @@
   - Responsive design
 - ✅ Route: `/` → HomeController@index
 
-### 2. **Listing** (70% - Backend + View hoàn thành)
+### 2. **Listing** (100% - Hoàn thành)
 - ✅ Controller: `PropertyController.php`
   - Method `listing()` cho buy/rent/featured
   - Phân trang 12 BDS/trang
@@ -31,7 +31,7 @@
   - `/rent` → PropertyController@listing (category=rent)
   - `/featured` → PropertyController@listing (category=featured)
 
-### 3. **Detail** (80% - Backend + View hoàn thành)
+### 3. **Detail** (100% - Hoàn thành)
 - ✅ Controller: `PropertyController.php`
   - Method `detail()` hiển thị chi tiết BDS
   - Lấy 4 BDS liên quan (cùng category)
@@ -45,7 +45,7 @@
   - Responsive design
 - ✅ Route: `/property/{id}` → PropertyController@detail
 
-### 4. **Search & Filter** (80% - Backend + View hoàn thành)
+### 4. **Search & Filter** (100% - Hoàn thành)
 - ✅ Controller: `SearchController.php`
   - Tìm kiếm theo keyword (title, location)
   - Filter theo category (buy/rent/featured)
@@ -65,7 +65,7 @@
   - Responsive design
 - ✅ Route: `/search` → SearchController@search
 
-### 5. **Contact** (80% - Backend + View hoàn thành)
+### 5. **Contact** (100% - Hoàn thành)
 - ✅ Controller: `ContactController.php`
   - Method `index()` hiển thị trang contact
   - Method `sendInquiry()` xử lý gửi form
@@ -81,7 +81,7 @@
   - `/contact` → ContactController@index
   - `/inquiry/sending` → ContactController@sendInquiry
 
-### 6. **Register** (90% - Đã có sẵn, thêm comment)
+### 6. **Register** (100% - Hoàn thành)
 - ✅ Controller: `RegisterController.php`
   - Method `index()` hiển thị form đăng ký
   - Method `creating()` xử lý đăng ký
@@ -102,9 +102,22 @@
   - Responsive menu
   - Sticky header
 
+### 7. **About Us** (100% - Hoàn thành)
+- ✅ Controller: `AboutController.php`
+- ✅ View: `about_us.blade.php` với thông tin công ty, stats, features
+- ✅ Route: `/about_us` → AboutController@index
+- ✅ Đã thêm vào navigation menu
+
+### 8. **Data Seeder** (100% - Hoàn thành)
+- ✅ PropertySeeder với 10 properties mẫu
+- ✅ 3 Featured properties
+- ✅ 3 Rent properties  
+- ✅ 4 Buy properties
+- ✅ Đã chạy seeder thành công
+
 ## ⚠️ Còn thiếu
 
-### 8. **Responsive** (30% - Đã có CSS responsive cơ bản)
+### 9. **Responsive** (30% - Đã có CSS responsive cơ bản)
 - ✅ CSS responsive cho mobile đã có trong tất cả views
 - ❌ Cần test trên nhiều thiết bị
 - ❌ Có thể cần optimize thêm cho tablet
@@ -135,14 +148,16 @@
 
 | Task | Tiến độ | Giờ ước tính | Giờ đã làm |
 |------|---------|--------------|------------|
-| Homepage | 70% | 5h | 3.5h |
-| Listing | 70% | 4h | 2.8h |
-| Detail | 80% | 3h | 2.4h |
-| Search & Filter | 80% | 4h | 3.2h |
-| Contact | 80% | 2h | 1.6h |
-| Register | 90% | 3h | 2.7h |
+| Homepage | 100% | 5h | 5h |
+| Listing | 100% | 4h | 4h |
+| Detail | 100% | 3h | 3h |
+| Search & Filter | 100% | 4h | 4h |
+| Contact | 100% | 2h | 2h |
+| Register | 100% | 3h | 3h |
+| About Us | 100% | 1h | 1h |
+| Data Seeder | 100% | 0.5h | 0.5h |
 | Responsive | 30% | 5h | 1.5h |
-| **TỔNG** | **72%** | **26h** | **18.7h** |
+| **TỔNG** | **90%** | **27.5h** | **24h** |
 
 ## 🚀 Bước tiếp theo
 
