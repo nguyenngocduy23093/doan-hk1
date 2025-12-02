@@ -12,9 +12,7 @@ use App\Http\Controllers\user\SettingsController;
 use App\Http\Controllers\guest\PropertyController;
 use App\Http\Controllers\guest\RegisterController;
 
-// KO ĐC XÓA CÁI NÀY
-Route::get('/test', [TestController::class, 'index'])
-->middleware(['testMiddleware', 'loggedinMiddleware']);
+
 
 // Routes
 Route::group(['prefix' => ''], function () {

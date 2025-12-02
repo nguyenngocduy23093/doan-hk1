@@ -3,71 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealEstatePro</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'bds-red': '#E03C31', // Màu đỏ đặc trưng
-                        'bds-dark': '#1D2B3A' // Màu footer cũ
-                    }
-                }
+    <title>@yield('title', 'Real Estate Pro')</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        /* Header */
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #3498db;
+        }
+        /* Alert Messages */
+        .alert {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
             }
         }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-gray-50">
-
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 h-20 flex items-center justify-between">
-            <a href="/" class="text-3xl font-bold text-bds-red">
-                RealEstatePro
-            </a>
-
-            <nav class="hidden lg:flex gap-8 font-medium text-gray-700">
-                <a href="/" class="hover:text-bds-red transition">Trang chủ</a>
-                <a href="#" class="hover:text-bds-red transition">Mua</a>
-                <a href="#" class="hover:text-bds-red transition">Thuê</a>
-                <a href="#" class="hover:text-bds-red transition">Nổi bật</a>
-                <a href="#" class="hover:text-bds-red transition">Tìm kiếm</a>
-                <a href="#" class="hover:text-bds-red transition">Về chúng tôi</a>
-                <a href="#" class="hover:text-bds-red transition">Liên hệ</a>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="{{ route('home') }}" class="logo">RealEstatePro</a>
+                <ul class="nav-links">
+                    <li><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li><a href="{{ route('buy') }}">Mua</a></li>
+                    <li><a href="{{ route('rent') }}">Thuê</a></li>
+                    <li><a href="{{ route('featured') }}">Nổi bật</a></li>
+                    <li><a href="{{ route('search') }}">Tìm kiếm</a></li>
+                    <li><a href="{{ route('about') }}">Về chúng tôi</a></li>
+                    <li><a href="{{ route('contact') }}">Liên hệ</a></li>
+                    @if(session('user_verified'))
+                        <li><a href="/settings">{{ session('user_name') }}</a></li>
+                        <li><a href="/logout">Đăng xuất</a></li>
+                    @else
+                        <li><a href="{{ route('register') }}">Đăng ký</a></li>
+                        <li><a href="/login">Đăng nhập</a></li>
+                    @endif
+                </ul>
             </nav>
-
-            <div class="flex items-center gap-4 font-medium text-gray-700">
-                <a href="#" class="hover:text-bds-red transition">Đăng ký</a>
-                <span class="text-gray-300">|</span>
-                <a href="#" class="hover:text-bds-red transition">Đăng nhập</a>
-            </div>
         </div>
     </header>
 
-    <section class="bg-gradient-to-r from-bds-red to-[#FF6B6B] py-28 flex flex-col items-center justify-center text-center px-4">
-        <h1 class="text-white text-4xl md:text-5xl font-bold mb-4">Tìm ngôi nhà mơ ước của bạn</h1>
-        <p class="text-white text-lg md:text-xl mb-10 opacity-90">Hàng ngàn bất động sản chất lượng đang chờ bạn khám phá</p>
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Flash Messages -->
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-error">{{ session('error') }}</div>
+            @endif
 
-        <div class="bg-white p-4 md:p-6 rounded-xl shadow-2xl w-full max-w-5xl">
-            <form action="#" class="flex flex-col md:flex-row gap-4">
-                <input type="text" placeholder="Nhập từ khóa..." class="flex-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bds-red text-gray-800 placeholder-gray-400">
-                
-                <input type="text" placeholder="Chọn khu vực..." class="flex-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bds-red text-gray-800 placeholder-gray-400">
-                
-                <button type="submit" class="bg-bds-red hover:bg-[#c4261d] text-white font-bold px-8 py-3 rounded-md transition whitespace-nowrap">
-                    Tìm kiếm
-                </button>
-            </form>
+            @yield('content')
         </div>
-    </section>
+    </main>
 
-    <footer class="bg-bds-dark text-white text-center py-6 mt-auto">
-        <p>© 2025 RealEstatePro. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 RealEstatePro. All rights reserved.</p>
+        </div>
     </footer>
-
 </body>
 </html>
