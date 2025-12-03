@@ -46,11 +46,15 @@
         
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             @foreach($featuredProperties as $property)
-            <a href="{{ route('property.detail', $property->property_id) }}" class="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+            <a href="{{ route('property.detail', $property->property_id) }}" class="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <div class="relative h-48 bg-gray-200 overflow-hidden">
+                    <!-- Badge -->
+                    <div class="absolute top-2 left-2 z-10">
+                        <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded shadow-lg">🔥 NỔI BẬT</span>
+                    </div>
                     <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" 
                          alt="{{ $property->title }}" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
                 <div class="p-4">
                     <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2 h-12 group-hover:text-bds-red transition">
@@ -80,9 +84,13 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             @foreach($rentProperties as $property)
-            <a href="{{ route('property.detail', $property->property_id) }}" class="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+            <a href="{{ route('property.detail', $property->property_id) }}" class="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <div class="relative h-48 bg-gray-200 overflow-hidden">
-                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $property->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <!-- Badge -->
+                    <div class="absolute top-2 left-2 z-10">
+                        <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded shadow-lg">🏠 CHO THUÊ</span>
+                    </div>
+                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $property->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
                 <div class="p-4">
                     <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2 h-12 group-hover:text-bds-red transition">{{ $property->title }}</h3>
@@ -110,9 +118,13 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             @foreach($buyProperties as $property)
-            <a href="{{ route('property.detail', $property->property_id) }}" class="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition">
+            <a href="{{ route('property.detail', $property->property_id) }}" class="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <div class="relative h-48 bg-gray-200 overflow-hidden">
-                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $property->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <!-- Badge -->
+                    <div class="absolute top-2 left-2 z-10">
+                        <span class="bg-green-600 text-white text-xs font-bold px-2 py-1 rounded shadow-lg">💰 BÁN</span>
+                    </div>
+                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $property->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                 </div>
                 <div class="p-4">
                     <h3 class="font-semibold text-gray-900 line-clamp-2 mb-2 h-12 group-hover:text-bds-red transition">{{ $property->title }}</h3>

@@ -50,7 +50,7 @@
     }
     .image-thumbnails {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         gap: 1rem;
     }
     .thumbnail {
@@ -235,7 +235,7 @@
             height: 300px;
         }
         .image-thumbnails {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
         }
         .overview-grid {
             grid-template-columns: 1fr;
@@ -278,15 +278,33 @@
                 <div class="main-image-container">
                     <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/1000x500' }}" 
                          alt="{{ $property->title }}" 
-                         class="main-image">
+                         class="main-image"
+                         id="mainImage">
                 </div>
                 <div class="image-thumbnails">
-                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/300x200' }}" class="thumbnail">
-                    <img src="https://via.placeholder.com/300x200" class="thumbnail">
-                    <img src="https://via.placeholder.com/300x200" class="thumbnail">
-                    <img src="https://via.placeholder.com/300x200" class="thumbnail">
+                    @php
+                        // Lấy số thứ tự property từ image_main_url (ví dụ: /images/1.1.jpg -> 1)
+                        $imagePrefix = '';
+                        if($property->image_main_url) {
+                            preg_match('/\/images\/(\d+)\./', $property->image_main_url, $matches);
+                            $imagePrefix = $matches[1] ?? '1';
+                        }
+                    @endphp
+                    
+                    @for($i = 1; $i <= 6; $i++)
+                        <img src="/images/{{ $imagePrefix }}.{{ $i }}.jpg" 
+                             class="thumbnail" 
+                             onclick="changeMainImage('/images/{{ $imagePrefix }}.{{ $i }}.jpg')"
+                             onerror="this.src='https://via.placeholder.com/300x200'">
+                    @endfor
                 </div>
             </div>
+
+            <script>
+            function changeMainImage(src) {
+                document.getElementById('mainImage').src = src;
+            }
+            </script>
 
             <!-- Thông tin nhanh -->
             <div style="display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
@@ -536,65 +554,99 @@
         <!-- RIGHT COLUMN - Contact Form (Sticky) -->
         <div class="detail-sidebar">
             <div class="contact-card">
+                @if(session('user_verified'))
+                <!-- Đã đăng nhập - Hiện button mở modal -->
+                <div style="text-align: center; padding: 1rem 0;">
+                    <h3 style="font-size: 1.5rem; color: #2c3e50; margin-bottom: 1rem;">Liên hệ tư vấn miễn phí</h3>
+                    <p style="color: #7f8c8d; margin-bottom: 1.5rem;">
+                        Chúng tôi sẽ kết nối bạn với những môi giới/ chủ đầu tư của dự án
+                    </p>
+                    <button onclick="openContactModal()" class="btn btn-primary" style="background: #E03C31; width: 100%; padding: 1rem; font-size: 1.1rem; border: none; border-radius: 5px; color: white; cursor: pointer;">
+                        📞 Yêu cầu liên hệ
+                    </button>
+                </div>
+
+                <!-- Modal -->
+                <div id="contactModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
+                    <div style="background: white; border-radius: 10px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative;">
+                        <!-- Header -->
+                        <div style="padding: 1.5rem; border-bottom: 1px solid #e0e0e0; display: flex; justify-content: space-between; align-items: center;">
+                            <h3 style="margin: 0; font-size: 1.3rem; color: #2c3e50;">Yêu cầu liên hệ</h3>
+                            <button onclick="closeContactModal()" style="background: none; border: none; font-size: 1.5rem; color: #999; cursor: pointer; padding: 0; width: 30px; height: 30px;">✕</button>
+                        </div>
+                        
+                        <!-- Body -->
+                        <div style="padding: 1.5rem;">
+                            <p style="color: #7f8c8d; margin-bottom: 1.5rem;">
+                                Chúng tôi sẽ kết nối bạn với những môi giới/ chủ đầu tư của dự án
+                            </p>
+                            
+                            <form action="{{ route('inquiry.send') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="property_id" value="{{ $property->property_id }}">
+                                
+                                <div class="form-group" style="margin-bottom: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600;">Họ tên *</label>
+                                    <input type="text" name="name" value="{{ session('user_name') }}" required placeholder="Nhập họ tên" 
+                                           style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+                                </div>
+                                
+                                <div class="form-group" style="margin-bottom: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600;">Số điện thoại *</label>
+                                    <input type="tel" name="phone" required placeholder="Nhập số điện thoại" 
+                                           style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+                                </div>
+                                
+                                <div class="form-group" style="margin-bottom: 1rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600;">Nội dung</label>
+                                    <textarea name="message" placeholder="Tôi quan tâm đến dự án này" 
+                                              style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; min-height: 100px; resize: vertical;">Tôi quan tâm đến dự án này</textarea>
+                                </div>
+                                
+                                <input type="hidden" name="title" value="Yêu cầu liên hệ từ {{ $property->title }}">
+                                
+                                <p style="font-size: 0.85rem; color: #7f8c8d; margin-bottom: 1rem;">
+                                    Bằng việc gửi thông tin, bạn đồng ý với <a href="#" style="color: #E03C31;">chính sách bảo mật</a> và cho phép Batdongsan.com.vn thu thập, xử lý, chia sẻ thông tin này tới môi giới/ chủ đầu tư để liên lạc với bạn.
+                                </p>
+                                
+                                <button type="submit" style="width: 100%; padding: 1rem; background: #E03C31; color: white; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: bold; cursor: pointer;">
+                                    Gửi thông tin
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                function openContactModal() {
+                    document.getElementById('contactModal').style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+                function closeContactModal() {
+                    document.getElementById('contactModal').style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+                // Click outside to close
+                document.getElementById('contactModal').addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeContactModal();
+                    }
+                });
+                </script>
+                </div>
+                @else
+                <!-- Chưa đăng nhập - Hiện button redirect -->
                 <div style="text-align: center; padding: 1rem 0;">
                     <h3 style="font-size: 1.5rem; color: #2c3e50; margin-bottom: 1rem;">Liên hệ tư vấn miễn phí</h3>
                     <p style="color: #7f8c8d; margin-bottom: 1.5rem;">
                         Hãy để lại thông tin của bạn để nhận tư vấn và các cập nhật mới nhất của dự án này
                     </p>
-                    
-                    @if(session('user_verified'))
-                        <!-- Đã đăng nhập - Hiện button mở form -->
-                        <button onclick="toggleContactForm()" id="toggleBtn" class="btn btn-primary" style="background: #17a2b8; width: 100%; padding: 1rem; font-size: 1.1rem;">
-                            ✉️ Liên hệ lại tôi
-                        </button>
-                    @else
-                        <!-- Chưa đăng nhập - Redirect sang register -->
-                        <a href="{{ route('register') }}" class="btn btn-primary" style="background: #17a2b8; width: 100%; padding: 1rem; font-size: 1.1rem; display: block; text-decoration: none; color: white;">
-                            ✉️ Đăng ký để liên hệ
-                        </a>
-                        <p style="margin-top: 1rem; font-size: 0.9rem; color: #7f8c8d;">
-                            Đã có tài khoản? <a href="/login" style="color: #3498db;">Đăng nhập ngay</a>
-                        </p>
-                    @endif
-                </div>
-
-                @if(session('user_verified'))
-                <div id="contactFormContainer" style="display: none; margin-top: 1.5rem;">
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
-                        <h4 style="margin: 0; font-size: 1.2rem;">📞 Liên hệ tư vấn miễn phí</h4>
-                        <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; opacity: 0.9;">
-                            Để lại thông tin để được tư vấn
-                        </p>
-                    </div>
-                
-                <form action="{{ route('inquiry.send') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="property_id" value="{{ $property->property_id }}">
-                    
-                    @if (!session('user_verified'))
-                        <div class="form-group">
-                            <label>Họ tên *</label>
-                            <input type="text" name="name" required placeholder="Nhập họ tên">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Email *</label>
-                            <input type="email" name="email" required placeholder="example@email.com">
-                        </div>    
-                    @endif
-                    
-                    <div class="form-group">
-                        <label>Tiêu đề *</label>
-                        <input type="text" name="title" required placeholder="Ví dụ: Tôi muốn xem nhà">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Tin nhắn *</label>
-                        <textarea name="message" required placeholder="Nhập nội dung tin nhắn..."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">📤 Gửi yêu cầu</button>
-                </form>
+                    <a href="{{ route('register') }}" class="btn btn-primary" style="background: #17a2b8; width: 100%; padding: 1rem; font-size: 1.1rem; display: block; text-decoration: none; color: white;">
+                        ✉️ Đăng ký để liên hệ
+                    </a>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #7f8c8d;">
+                        Đã có tài khoản? <a href="/login" style="color: #3498db;">Đăng nhập ngay</a>
+                    </p>
                 </div>
                 @endif
             </div>
@@ -602,20 +654,7 @@
     </div>
 </div>
 
-<script>
-function toggleContactForm() {
-    const form = document.getElementById('contactFormContainer');
-    const btn = document.getElementById('toggleBtn');
-    
-    if (form.style.display === 'none') {
-        form.style.display = 'block';
-        btn.style.display = 'none';
-    } else {
-        form.style.display = 'none';
-        btn.style.display = 'block';
-    }
-}
-</script>
+
 
 <!-- Related Properties -->
 @if($relatedProperties->count() > 0)

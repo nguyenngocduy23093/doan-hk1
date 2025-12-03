@@ -17,7 +17,7 @@ class PropertySeeder extends Seeder
             [
                 'title' => 'Căn hộ cao cấp Vinhomes Central Park',
                 'price' => 5500000000,
-                'image_main_url' => 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800',
+                'image_main_url' => '/images/1.1.jpg',
                 'location' => 'Quận Bình Thạnh, TP.HCM',
                 'description' => 'Căn hộ 3 phòng ngủ view sông Saigon tuyệt đẹp, nội thất cao cấp, đầy đủ tiện nghi.',
                 'type' => 'apartment',
@@ -32,7 +32,7 @@ class PropertySeeder extends Seeder
             [
                 'title' => 'Biệt thự đơn lập Phú Mỹ Hưng',
                 'price' => 18000000000,
-                'image_main_url' => 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
+                'image_main_url' => '/images/2.1.jpg',
                 'location' => 'Quận 7, TP.HCM',
                 'description' => 'Biệt thự sang trọng 2 tầng, sân vườn rộng, khu an ninh 24/7.',
                 'type' => 'villa',
@@ -47,7 +47,7 @@ class PropertySeeder extends Seeder
             [
                 'title' => 'Penthouse The Landmark 81',
                 'price' => 25000000000,
-                'image_main_url' => 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800',
+                'image_main_url' => '/images/3.1.jpg',
                 'location' => 'Quận Bình Thạnh, TP.HCM',
                 'description' => 'Penthouse đỉnh cao xa xỉ tại tòa nhà cao nhất Việt Nam.',
                 'type' => 'apartment',
@@ -64,7 +64,7 @@ class PropertySeeder extends Seeder
             [
                 'title' => 'Căn hộ 2PN Masteri Thảo Điền',
                 'price' => 15000000,
-                'image_main_url' => 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800',
+                'image_main_url' => '/images/4.1.jpg',
                 'location' => 'Quận 2, TP.HCM',
                 'description' => 'Căn hộ hiện đại, đầy đủ nội thất, view đẹp, gần trung tâm.',
                 'type' => 'apartment',
@@ -79,7 +79,7 @@ class PropertySeeder extends Seeder
             [
                 'title' => 'Nhà phố 1 trệt 2 lầu Gò Vấp',
                 'price' => 12000000,
-                'image_main_url' => 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800',
+                'image_main_url' => '/images/5.1.jpg',
                 'location' => 'Quận Gò Vấp, TP.HCM',
                 'description' => 'Nhà mới xây, thoáng mát, gần chợ, trường học.',
                 'type' => 'house',
@@ -94,7 +94,7 @@ class PropertySeeder extends Seeder
             [
                 'title' => 'Studio The Sun Avenue',
                 'price' => 8000000,
-                'image_main_url' => 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800',
+                'image_main_url' => '/images/6.1.jpg',
                 'location' => 'Quận 2, TP.HCM',
                 'description' => 'Studio nhỏ gọn, đầy đủ tiện nghi, phù hợp sinh viên, người đi làm.',
                 'type' => 'apartment',
@@ -111,7 +111,7 @@ class PropertySeeder extends Seeder
             [
                 'title' => 'Căn hộ 3PN Saigon Pearl',
                 'price' => 6800000000,
-                'image_main_url' => 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800',
+                'image_main_url' => '/images/7.1.jpg',
                 'location' => 'Quận Bình Thạnh, TP.HCM',
                 'description' => 'Căn góc view sông, nội thất cao cấp, sổ hồng chính chủ.',
                 'type' => 'apartment',
@@ -126,7 +126,7 @@ class PropertySeeder extends Seeder
             [
                 'title' => 'Nhà mặt tiền Phan Văn Trị',
                 'price' => 15000000000,
-                'image_main_url' => 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800',
+                'image_main_url' => '/images/8.1.jpg',
                 'location' => 'Quận Gò Vấp, TP.HCM',
                 'description' => 'Nhà mặt tiền kinh doanh sầm uất, 1 trệt 3 lầu.',
                 'type' => 'house',
@@ -141,7 +141,7 @@ class PropertySeeder extends Seeder
             [
                 'title' => 'Đất nền KDC Phú Hữu',
                 'price' => 3500000000,
-                'image_main_url' => 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800',
+                'image_main_url' => '/images/9.1.jpg',
                 'location' => 'Quận 9, TP.HCM',
                 'description' => 'Đất nền sổ đỏ, khu dân cư cao cấp, hạ tầng hoàn thiện.',
                 'type' => 'land',
@@ -156,7 +156,7 @@ class PropertySeeder extends Seeder
             [
                 'title' => 'Căn hộ 2PN Sunrise City',
                 'price' => 4200000000,
-                'image_main_url' => 'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800',
+                'image_main_url' => '/images/1.1.jpg',
                 'location' => 'Quận 7, TP.HCM',
                 'description' => 'Căn hộ view đẹp, nội thất cơ bản, giá tốt.',
                 'type' => 'apartment',
