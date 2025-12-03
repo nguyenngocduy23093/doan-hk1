@@ -26,7 +26,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+    <header class="bg-white shadow-sm sticky top-0 z-[9999] border-b border-gray-100">
         <div class="container mx-auto px-4 h-20 flex items-center justify-between">
             <nav class="flex items-center w-full justify-between">
                 <a href="{{ route('home') }}" class="text-2xl font-bold text-bds-red no-underline flex items-center gap-2">
@@ -70,10 +70,89 @@
         @yield('content')
     </main>
 
-    <footer class="bg-white text-gray-800 border-t border-gray-200 py-8 mt-10">
-        <div class="container mx-auto px-4 text-center">
-            <p class="font-bold text-lg mb-2 text-bds-red">RealEstatePro</p>
-            <p class="text-gray-500 text-sm">&copy; 2025 RealEstatePro. All rights reserved.</p>
+    <footer class="bg-white border-t border-gray-200 mt-16">
+        <!-- Tìm kiếm theo từ khóa -->
+        <div class="bg-gray-50 py-8">
+            <div class="container mx-auto px-4">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Tìm kiếm theo từ khóa</h3>
+                <div class="flex flex-wrap gap-2">
+                    <a href="{{ route('search') }}?keyword=chung cư" class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm text-gray-700 hover:border-bds-red hover:text-bds-red transition">Bán căn hộ chung cư</a>
+                    <a href="{{ route('search') }}?type=villa" class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm text-gray-700 hover:border-bds-red hover:text-bds-red transition">Bán nhà biệt thự, liền kề</a>
+                    <a href="{{ route('search') }}?type=house" class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm text-gray-700 hover:border-bds-red hover:text-bds-red transition">Bán nhà mặt phố</a>
+                    <a href="{{ route('search') }}?type=land" class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm text-gray-700 hover:border-bds-red hover:text-bds-red transition">Bán đất nền dự án</a>
+                    <a href="{{ route('rent') }}" class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm text-gray-700 hover:border-bds-red hover:text-bds-red transition">Cho thuê căn hộ chung cư</a>
+                    <a href="{{ route('rent') }}?type=house" class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm text-gray-700 hover:border-bds-red hover:text-bds-red transition">Cho thuê nhà riêng</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Footer -->
+        <div class="bg-gray-800 text-gray-300 py-12">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <!-- Cột 1: Logo & Thông tin công ty -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-4">RealEstatePro</h3>
+                        <p class="text-sm mb-4">Nền tảng bất động sản hàng đầu Việt Nam</p>
+                        <div class="space-y-2 text-sm">
+                            <p>📍 123 Đường ABC, Quận 1, TP.HCM</p>
+                            <p>📞 Hotline: <a href="tel:1900123456" class="text-bds-red hover:underline">1900 123 456</a></p>
+                            <p>✉️ Email: <a href="mailto:info@realestatepro.com" class="text-bds-red hover:underline">info@realestatepro.com</a></p>
+                        </div>
+                    </div>
+
+                    <!-- Cột 2: Hướng dẫn -->
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Hướng dẫn</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="{{ route('about') }}" class="hover:text-white transition">Về chúng tôi</a></li>
+                            <li><a href="{{ route('contact') }}" class="hover:text-white transition">Liên hệ</a></li>
+                            <li><a href="#" class="hover:text-white transition">Câu hỏi thường gặp</a></li>
+                            <li><a href="#" class="hover:text-white transition">Góp ý báo lỗi</a></li>
+                            <li><a href="#" class="hover:text-white transition">Sitemap</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cột 3: Quy định -->
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Quy định</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#" class="hover:text-white transition">Quy định đăng tin</a></li>
+                            <li><a href="#" class="hover:text-white transition">Quy chế hoạt động</a></li>
+                            <li><a href="#" class="hover:text-white transition">Điều khoản thỏa thuận</a></li>
+                            <li><a href="#" class="hover:text-white transition">Chính sách bảo mật</a></li>
+                            <li><a href="#" class="hover:text-white transition">Giải quyết khiếu nại</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Cột 4: Đăng ký nhận tin -->
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Đăng ký nhận tin</h4>
+                        <p class="text-sm mb-4">Nhận thông tin mới nhất về bất động sản</p>
+                        <form class="flex gap-2">
+                            <input type="email" placeholder="Nhập email của bạn" class="flex-1 px-3 py-2 rounded text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-bds-red">
+                            <button type="submit" class="bg-bds-red hover:bg-bds-red-hover text-white px-4 py-2 rounded transition">
+                                →
+                            </button>
+                        </form>
+                        <div class="mt-6">
+                            <p class="text-sm mb-2">Kết nối với chúng tôi</p>
+                            <div class="flex gap-3">
+                                <a href="#" class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition">f</a>
+                                <a href="#" class="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition">t</a>
+                                <a href="#" class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition">y</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="bg-gray-900 text-gray-400 py-4">
+            <div class="container mx-auto px-4 text-center text-sm">
+                <p>&copy; 2025 RealEstatePro. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
