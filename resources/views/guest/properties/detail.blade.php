@@ -568,16 +568,16 @@
 
                 <!-- Modal -->
                 <div id="contactModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
-                    <div style="background: white; border-radius: 10px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; position: relative;">
+                    <div style="background: white; border-radius: 10px; max-width: 500px; width: 90%; max-height: 90vh; overflow: hidden; position: relative; display: flex; flex-direction: column;">
                         <!-- Header -->
-                        <div style="padding: 1.5rem; border-bottom: 1px solid #e0e0e0; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="padding: 1.5rem; border-bottom: 1px solid #e0e0e0; display: flex; justify-content: space-between; align-items: center; background: white; flex-shrink: 0;">
                             <h3 style="margin: 0; font-size: 1.3rem; color: #2c3e50;">Yêu cầu liên hệ</h3>
                             <button onclick="closeContactModal()" style="background: none; border: none; font-size: 1.5rem; color: #999; cursor: pointer; padding: 0; width: 30px; height: 30px;">✕</button>
                         </div>
                         
                         <!-- Body -->
-                        <div style="padding: 1.5rem;">
-                            <p style="color: #7f8c8d; margin-bottom: 1.5rem;">
+                        <div style="padding: 1.5rem; overflow-y: auto; flex: 1;">
+                            <p style="color: #7f8c8d; margin-bottom: 1.5rem; margin-top: 0;">
                                 Chúng tôi sẽ kết nối bạn với những môi giới/ chủ đầu tư của dự án
                             </p>
                             
