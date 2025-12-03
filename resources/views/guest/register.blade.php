@@ -13,21 +13,52 @@
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative; /* Cần thiết cho lớp nền giả */
+            overflow: hidden;   /* Ẩn phần rìa bị mờ */
         }
+
+        /* --- TẠO HÌNH NỀN TÒA NHÀ MỜ --- */
+        body::before {
+            content: "";
+            position: absolute;
+            /* Mở rộng lớp nền để tránh bị hụt viền khi blur */
+            top: -20px; left: -20px; right: -20px; bottom: -20px;
+            z-index: -1;
+            
+            /* Link ảnh tòa nhà */
+            background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            
+            /* Làm mờ hình nền */
+            filter: blur(8px); 
+        }
+        
+        /* Lớp phủ màu tối nhẹ để tăng độ tương phản */
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.1); 
+            z-index: -1;
+        }
+
         .register-container {
-            background: white;
+            background: rgba(255, 255, 255, 0.95); /* Nền trắng hơi trong suốt */
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             max-width: 450px;
             width: 100%;
             padding: 40px;
+            position: relative;
+            z-index: 1;
         }
+
         .register-header {
             text-align: center;
             margin-bottom: 30px;
@@ -59,32 +90,39 @@
             font-size: 14px;
             transition: all 0.3s;
         }
+        
+        /* --- HIỆU ỨNG FOCUS MÀU ĐỎ --- */
         .form-group input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #E03C31; /* Viền màu đỏ */
+            box-shadow: 0 0 0 3px rgba(224, 60, 49, 0.15); /* Bóng đỏ nhạt */
         }
+        
         .error-message {
             color: #e74c3c;
             font-size: 12px;
             margin-top: 5px;
         }
+        
+        /* --- NÚT ĐĂNG KÝ MÀU ĐỎ --- */
         .btn-register {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Gradient đỏ */
+            background: linear-gradient(135deg, #E03C31 0%, #B91C1C 100%);
             color: white;
             border: none;
             border-radius: 10px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .btn-register:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 20px rgba(224, 60, 49, 0.3); /* Bóng hover đỏ */
         }
+
         .login-link {
             text-align: center;
             margin-top: 20px;
@@ -92,7 +130,7 @@
             font-size: 14px;
         }
         .login-link a {
-            color: #667eea;
+            color: #E03C31; /* Link màu đỏ */
             text-decoration: none;
             font-weight: 600;
         }
@@ -109,7 +147,7 @@
             font-size: 13px;
         }
         .back-home a:hover {
-            color: #667eea;
+            color: #E03C31; /* Hover màu đỏ */
         }
     </style>
 </head>
