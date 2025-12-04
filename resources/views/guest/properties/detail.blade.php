@@ -417,53 +417,6 @@
 
             </div>
 
-            <!-- Mặt bằng -->
-            <div class="section-title" style="font-size: 1.8rem; color: #2c3e50; margin: 3rem 0 1.5rem; border-bottom: 3px solid #3498db; padding-bottom: 0.5rem;">
-                🏗️ Mặt Bằng - Thiết Kế
-            </div>
-            <div>
-                <div class="description-box">
-                    <h3>🏗️ Mặt Bằng - Thiết Kế</h3>
-                    
-                    <h4 style="margin-top: 1.5rem; color: #2c3e50;">Khu nhà ở thấp tầng (Green Little Town)</h4>
-                    <ul style="line-height: 2; color: #555; margin-left: 1.5rem;">
-                        <li><strong>Sản phẩm:</strong> Biệt thự, nhà phố thương mại, liền kề</li>
-                        <li><strong>Xây dựng:</strong> 06 tầng, có thang máy</li>
-                        <li><strong>Số lượng:</strong> 17 căn biệt thự, 21 căn nhà phố thương mại, 96 căn liền kề</li>
-                        <li><strong>Diện tích sàn phẩm:</strong> 80m2-90m2-100m2</li>
-                    </ul>
-
-                    <h4 style="margin-top: 1.5rem; color: #2c3e50;">Khu căn hộ cao tầng (Green Vista)</h4>
-                    <ul style="line-height: 2; color: #555; margin-left: 1.5rem;">
-                        <li><strong>Diện tích đất:</strong> 2.280,1m2</li>
-                        <li><strong>Chiều cao:</strong> 15 tầng nổi + 03 tầng hầm</li>
-                        <li><strong>Số lượng căn hộ:</strong> 110 căn</li>
-                        <li><strong>Diện tích căn hộ:</strong> 48.83m2 - 77.47m2 (2-3PN)</li>
-                    </ul>
-
-                    <div style="margin-top: 2rem; padding: 2rem; background: #2c5f4f; border-radius: 10px; color: white;">
-                        <h4 style="color: #ffd700; margin-bottom: 1rem;">MẶT BẰNG TỔNG THỂ</h4>
-                        <ul style="line-height: 2;">
-                            <li>7 phân khu</li>
-                            <li>Quy mô 168 căn hộ thấp tầng, 01 khối cao tầng</li>
-                            <li>Tiện ích: Công viên cây xanh, trung tâm thương mại, trường mầm non, bể bơi 4 mùa</li>
-                            <li>Mật tiền rộng từ 4.6 – 7m</li>
-                            <li>Đường nội khu rộng từ 11.5 – 15m</li>
-                            <li>Đường QH rộng 25 – 30m</li>
-                        </ul>
-                    </div>
-
-                    <div style="margin-top: 2rem;">
-                        <img src="https://via.placeholder.com/800x600?text=Mặt+Bằng+Tổng+Thể" 
-                             style="width: 100%; border-radius: 10px;" 
-                             alt="Mặt bằng tổng thể">
-                        <p style="text-align: center; color: #7f8c8d; margin-top: 0.5rem; font-size: 0.9rem;">
-                            Mặt bằng tổng thể dự án
-                        </p>
-                    </div>
-                </div>
-            </div>
-
             <!-- Tiện ích -->
             <div class="section-title" style="font-size: 1.8rem; color: #2c3e50; margin: 3rem 0 1.5rem; border-bottom: 3px solid #3498db; padding-bottom: 0.5rem;">
                 ✨ Tiện Ích
@@ -521,17 +474,6 @@
                 </div>
             </div>
 
-            <!-- Mô tả -->
-            <div class="section-title" style="font-size: 1.8rem; color: #2c3e50; margin: 3rem 0 1.5rem; border-bottom: 3px solid #3498db; padding-bottom: 0.5rem;">
-                📝 Mô Tả Chi Tiết
-            </div>
-            <div>
-                <div class="description-box">
-                    <h3>📝 Mô tả chi tiết</h3>
-                    <p>{{ $property->description }}</p>
-                </div>
-            </div>
-
             <!-- Vị trí -->
             <div class="section-title" style="font-size: 1.8rem; color: #2c3e50; margin: 3rem 0 1.5rem; border-bottom: 3px solid #3498db; padding-bottom: 0.5rem;">
                 📍 Vị Trí
@@ -542,10 +484,25 @@
                     <p><strong>Địa chỉ:</strong> {{ $property->location }}</p>
                     @if($property->gps)
                     <p><strong>Tọa độ GPS:</strong> {{ $property->gps }}</p>
-                    <div style="margin-top: 1rem; padding: 2rem; background: #f0f0f0; border-radius: 5px; text-align: center;">
-                        <p>🗺️ Google Maps sẽ được hiển thị ở đây</p>
-                        <small>(Cần API key để hiển thị bản đồ)</small>
+                    
+                    <!-- Google Maps -->
+                    <div style="margin-top: 1.5rem;">
+                        <div style="margin-bottom: 0.5rem;">
+                            <a href="https://www.google.com/maps?q={{ $property->gps }}" target="_blank" style="color: #3498db; text-decoration: none; font-weight: 600;">
+                                🗺️ Xem trên bản đồ →
+                            </a>
+                        </div>
+                        <iframe 
+                            width="100%" 
+                            height="400" 
+                            frameborder="0" 
+                            style="border:0; border-radius: 10px;" 
+                            src="https://maps.google.com/maps?q={{ $property->gps }}&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            allowfullscreen>
+                        </iframe>
                     </div>
+                    @else
+                    <p style="color: #999; font-style: italic;">Chưa có thông tin tọa độ GPS</p>
                     @endif
                 </div>
             </div>
