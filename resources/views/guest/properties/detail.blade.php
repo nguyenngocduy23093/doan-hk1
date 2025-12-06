@@ -486,8 +486,10 @@
                     
                     <!-- Google Maps Embed -->
                     <div style="margin-top: 1.5rem;">
-                        <div style="position: relative; width: 100%; height: 450px; border-radius: 10px; overflow: hidden;">
-                            {!! $property->gps !!}
+                        <div style="position: relative; width: 100%; height: 800px; border-radius: 10px; overflow: hidden;">
+                            <div style="width: 100%; height: 100%;">
+                                {!! preg_replace(['/width="[^"]*"/', '/height="[^"]*"/'], ['width="100%"', 'height="100%"'], $property->gps) !!}
+                            </div>
                         </div>
                     </div>
                     @else
