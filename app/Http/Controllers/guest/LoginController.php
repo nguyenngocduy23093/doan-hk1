@@ -4,7 +4,7 @@ namespace App\Http\Controllers\guest;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Users;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -31,7 +31,7 @@ class LoginController extends Controller
             ]);
         }
 
-        $user = Users::where('email', $input)->first();
+        $user = User::where('email', $input)->first();
 
 
         // Check if user exists and validate password
