@@ -483,26 +483,15 @@
                     <h3>📍 Vị trí</h3>
                     <p><strong>Địa chỉ:</strong> {{ $property->location }}</p>
                     @if($property->gps)
-                    <p><strong>Tọa độ GPS:</strong> {{ $property->gps }}</p>
                     
-                    <!-- Google Maps -->
+                    <!-- Google Maps Embed -->
                     <div style="margin-top: 1.5rem;">
-                        <div style="margin-bottom: 0.5rem;">
-                            <a href="https://www.google.com/maps?q={{ $property->gps }}" target="_blank" style="color: #3498db; text-decoration: none; font-weight: 600;">
-                                🗺️ Xem trên bản đồ →
-                            </a>
+                        <div style="position: relative; width: 100%; height: 450px; border-radius: 10px; overflow: hidden;">
+                            {!! $property->gps !!}
                         </div>
-                        <iframe 
-                            width="100%" 
-                            height="400" 
-                            frameborder="0" 
-                            style="border:0; border-radius: 10px;" 
-                            src="https://maps.google.com/maps?q={{ $property->gps }}&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            allowfullscreen>
-                        </iframe>
                     </div>
                     @else
-                    <p style="color: #999; font-style: italic;">Chưa có thông tin tọa độ GPS</p>
+                    <p style="color: #999; font-style: italic;">Chưa có bản đồ</p>
                     @endif
                 </div>
             </div>
