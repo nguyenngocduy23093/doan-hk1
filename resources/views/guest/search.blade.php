@@ -184,7 +184,7 @@
             
             {{-- Image Container --}}
             <div class="relative h-60 overflow-hidden">
-                <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" 
+                <img src="{{ $property->main_image ?? 'https://via.placeholder.com/400x300' }}" 
                      alt="{{ $property->title }}" 
                      class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out">
                 

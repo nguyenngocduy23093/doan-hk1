@@ -276,7 +276,7 @@
             <!-- Image Gallery -->
             <div class="image-gallery">
                 <div class="main-image-container">
-                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/1000x500' }}" 
+                    <img src="{{ $property->main_image ?? 'https://via.placeholder.com/1000x500' }}" 
                          alt="{{ $property->title }}" 
                          class="main-image"
                          id="mainImage">
@@ -285,8 +285,8 @@
                     @php
                         // Lấy số thứ tự property từ image_main_url (ví dụ: /images/1.1.jpg -> 1)
                         $imagePrefix = '';
-                        if($property->image_main_url) {
-                            preg_match('/\/images\/(\d+)\./', $property->image_main_url, $matches);
+                        if($property->main_image) {
+                            preg_match('/\/images\/(\d+)\./', $property->main_image, $matches);
                             $imagePrefix = $matches[1] ?? '1';
                         }
                     @endphp
@@ -483,26 +483,17 @@
                     <h3>📍 Vị trí</h3>
                     <p><strong>Địa chỉ:</strong> {{ $property->location }}</p>
                     @if($property->gps)
-                    <p><strong>Tọa độ GPS:</strong> {{ $property->gps }}</p>
                     
-                    <!-- Google Maps -->
+                    <!-- Google Maps Embed -->
                     <div style="margin-top: 1.5rem;">
-                        <div style="margin-bottom: 0.5rem;">
-                            <a href="https://www.google.com/maps?q={{ $property->gps }}" target="_blank" style="color: #3498db; text-decoration: none; font-weight: 600;">
-                                🗺️ Xem trên bản đồ →
-                            </a>
+                        <div style="position: relative; width: 100%; height: 800px; border-radius: 10px; overflow: hidden;">
+                            <div style="width: 100%; height: 100%;">
+                                {!! preg_replace(['/width="[^"]*"/', '/height="[^"]*"/'], ['width="100%"', 'height="100%"'], $property->gps) !!}
+                            </div>
                         </div>
-                        <iframe 
-                            width="100%" 
-                            height="400" 
-                            frameborder="0" 
-                            style="border:0; border-radius: 10px;" 
-                            src="https://maps.google.com/maps?q={{ $property->gps }}&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            allowfullscreen>
-                        </iframe>
                     </div>
                     @else
-                    <p style="color: #999; font-style: italic;">Chưa có thông tin tọa độ GPS</p>
+                    <p style="color: #999; font-style: italic;">Chưa có bản đồ</p>
                     @endif
                 </div>
             </div>
@@ -622,7 +613,7 @@
             @foreach($relatedProperties as $related)
             <a href="{{ route('property.detail', $related->property_id) }}" style="text-decoration: none; color: inherit;">
                 <div class="property-card">
-                    <img src="{{ $related->image_main_url ?? 'https://via.placeholder.com/400x300' }}" 
+                    <img src="{{ $related->main_image ?? 'https://via.placeholder.com/400x300' }}" 
                          alt="{{ $related->title }}" 
                          class="property-image">
                     <div class="property-info">

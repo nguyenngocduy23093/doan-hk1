@@ -99,7 +99,7 @@
                             🔥 HOT
                         </span>
                     </div>
-                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" 
+                    <img src="{{ $property->main_image ?? 'https://via.placeholder.com/400x300' }}" 
                          alt="{{ $property->title }}" 
                          class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -168,7 +168,7 @@
                     <div class="absolute top-3 left-3 z-10">
                         <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">CHO THUÊ</span>
                     </div>
-                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $property->title }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out">
+                    <img src="{{ $property->main_image ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $property->title }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out">
                 </div>
                 <div class="p-5 flex flex-col flex-grow">
                     <h3 class="font-bold text-gray-900 text-lg line-clamp-2 mb-3 group-hover:text-blue-600 transition-colors min-h-[3.5rem]">{{ $property->title }}</h3>
@@ -228,7 +228,7 @@
                     <div class="absolute top-3 left-3 z-10">
                         <span class="bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md">ĐANG BÁN</span>
                     </div>
-                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $property->title }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out">
+                    <img src="{{ $property->main_image ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $property->title }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out">
                 </div>
                 <div class="p-5 flex flex-col flex-grow">
                     <h3 class="font-bold text-gray-900 text-lg line-clamp-2 mb-3 group-hover:text-green-600 transition-colors min-h-[3.5rem]">{{ $property->title }}</h3>
