@@ -276,7 +276,7 @@
             <!-- Image Gallery -->
             <div class="image-gallery">
                 <div class="main-image-container">
-                    <img src="{{ $property->image_main_url ?? 'https://via.placeholder.com/1000x500' }}" 
+                    <img src="{{ $property->main_image ?? 'https://via.placeholder.com/1000x500' }}" 
                          alt="{{ $property->title }}" 
                          class="main-image"
                          id="mainImage">
@@ -285,8 +285,8 @@
                     @php
                         // Lấy số thứ tự property từ image_main_url (ví dụ: /images/1.1.jpg -> 1)
                         $imagePrefix = '';
-                        if($property->image_main_url) {
-                            preg_match('/\/images\/(\d+)\./', $property->image_main_url, $matches);
+                        if($property->main_image) {
+                            preg_match('/\/images\/(\d+)\./', $property->main_image, $matches);
                             $imagePrefix = $matches[1] ?? '1';
                         }
                     @endphp
@@ -622,7 +622,7 @@
             @foreach($relatedProperties as $related)
             <a href="{{ route('property.detail', $related->property_id) }}" style="text-decoration: none; color: inherit;">
                 <div class="property-card">
-                    <img src="{{ $related->image_main_url ?? 'https://via.placeholder.com/400x300' }}" 
+                    <img src="{{ $related->main_image ?? 'https://via.placeholder.com/400x300' }}" 
                          alt="{{ $related->title }}" 
                          class="property-image">
                     <div class="property-info">
