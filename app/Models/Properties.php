@@ -24,4 +24,10 @@ class Properties extends Model
         "amenities",
         "gps"
     ];
+    
+    // Relationship: Property has many PropertyImages
+    public function images()
+    {
+        return $this->hasMany(PropertyImage::class, 'property_id', 'property_id');
+    }
 }

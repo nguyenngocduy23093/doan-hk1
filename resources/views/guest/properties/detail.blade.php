@@ -282,21 +282,30 @@
                          id="mainImage">
                 </div>
                 <div class="image-thumbnails">
-                    @php
-                        // Lấy số thứ tự property từ image_main_url (ví dụ: /images/1.1.jpg -> 1)
-                        $imagePrefix = '';
-                        if($property->main_image) {
-                            preg_match('/\/images\/(\d+)\./', $property->main_image, $matches);
-                            $imagePrefix = $matches[1] ?? '1';
-                        }
-                    @endphp
-                    
-                    @for($i = 1; $i <= 6; $i++)
-                        <img src="/images/{{ $imagePrefix }}.{{ $i }}.jpg" 
-                             class="thumbnail" 
-                             onclick="changeMainImage('/images/{{ $imagePrefix }}.{{ $i }}.jpg')"
-                             onerror="this.src='https://via.placeholder.com/300x200'">
-                    @endfor
+                    @if($property->images && $property->images->count() > 0)
+                        @foreach($property->images as $image)
+                            <img src="{{ $image->image }}" 
+                                 class="thumbnail" 
+                                 onclick="changeMainImage('{{ $image->image }}')"
+                                 onerror="this.src='https://via.placeholder.com/300x200'">
+                        @endforeach
+                    @else
+                        @php
+                            // Fallback: Lấy số thứ tự property từ main_image (ví dụ: /images/1.1.jpg -> 1)
+                            $imagePrefix = '';
+                            if($property->main_image) {
+                                preg_match('/\/images\/(\d+)\./', $property->main_image, $matches);
+                                $imagePrefix = $matches[1] ?? '1';
+                            }
+                        @endphp
+                        
+                        @for($i = 1; $i <= 6; $i++)
+                            <img src="/images/{{ $imagePrefix }}.{{ $i }}.jpg" 
+                                 class="thumbnail" 
+                                 onclick="changeMainImage('/images/{{ $imagePrefix }}.{{ $i }}.jpg')"
+                                 onerror="this.src='https://via.placeholder.com/300x200'">
+                        @endfor
+                    @endif
                 </div>
             </div>
 
