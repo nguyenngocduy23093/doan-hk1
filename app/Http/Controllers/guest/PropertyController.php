@@ -58,9 +58,10 @@ class PropertyController extends Controller
      */
     public function detail($id)
     {
-        // Tìm BDS theo ID
+        // Tìm BDS theo ID và load images
         // find() trả về 1 record hoặc null nếu không tìm thấy
-        $property = Properties::find($id);
+        // with('images') = eager load relationship images
+        $property = Properties::with('images')->find($id);
 
         // Nếu không tìm thấy BDS, redirect về trang chủ
         if (!$property) {

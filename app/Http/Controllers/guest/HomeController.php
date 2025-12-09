@@ -26,21 +26,21 @@ class HomeController extends Controller
         // limit(6) = chỉ lấy 6 cái
         // get() = thực thi query và lấy kết quả
         $featuredProperties = Properties::where('category', 'featured')
-            ->orderBy('id', 'desc')
+            ->orderBy('property_id', 'desc')
             ->limit(6)
             ->get();
 
         // Lấy 6 BDS cho thuê (rent) mới nhất
         // Logic tương tự như trên, chỉ khác category là 'rent'
         $rentProperties = Properties::where('category', 'rent')
-            ->orderBy('id', 'desc')
+            ->orderBy('property_id', 'desc')
             ->limit(6)
             ->get();
 
         // Lấy 6 BDS bán (buy) mới nhất
         // Logic tương tự như trên, chỉ khác category là 'buy'
         $buyProperties = Properties::where('category', 'buy')
-            ->orderBy('id', 'desc')
+            ->orderBy('property_id', 'desc')
             ->limit(6)
             ->get();
 
