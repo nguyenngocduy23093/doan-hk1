@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\guest;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -40,6 +42,9 @@ class LoginController extends Controller
                 'password' => 'Sai mật khẩu hoặc email ko tồn tại',
             ]);
         }
+
+        // Use Laravel's Auth system to log in the user
+        Auth::login($user);
 
         // Save user session
         $request->session()->put('user_verified', true);

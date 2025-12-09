@@ -1,83 +1,77 @@
--- Create database (optional)
 CREATE DATABASE IF NOT EXISTS realestatepro;
 USE realestatepro;
 
--- USERS
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     name NVARCHAR(255),
     email NVARCHAR(255) UNIQUE,
     password NVARCHAR(255),
     avatar NVARCHAR(255),
-    role NVARCHAR(50), -- admin, user
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    role NVARCHAR(50) DEFAULT 'user',
+    created_at DATETIME,
+    updated_at DATETIME
 );
 
--- CATEGORIES
 CREATE TABLE categories (
     category_id INT AUTO_INCREMENT PRIMARY KEY,
     name NVARCHAR(255) UNIQUE
 );
 
--- PROPERTIES
 CREATE TABLE properties (
     property_id INT AUTO_INCREMENT PRIMARY KEY,
     title NVARCHAR(255),
     price DOUBLE,
-    image_main_url NVARCHAR(255),
+    main_image LONGBLOB,
     location NVARCHAR(255),
-    description TEXT,
-    type NVARCHAR(100), -- apartment, villa, etc.
+    type NVARCHAR(255),
     category NVARCHAR(255),
     bedrooms INT,
     bathrooms INT,
     area INT,
-    furnishing NVARCHAR(100), -- furnished, unfurnished, etc.
+    furnished TINYINT DEFAULT 0,
     amenities NVARCHAR(500),
-    gps NVARCHAR(750),
-    CONSTRAINT fk_property_category
+    gps NVARCHAR(255),
+    created_at DATETIME,
+    CONSTRAINT fk_category
         FOREIGN KEY (category)
         REFERENCES categories(name)
         ON UPDATE CASCADE
         ON DELETE SET NULL
 );
 
--- PROPERTY IMAGES
 CREATE TABLE property_images (
     image_id INT AUTO_INCREMENT PRIMARY KEY,
     property_id INT,
-    image_url NVARCHAR(255),
-    CONSTRAINT fk_image_property
+    image LONGBLOB,
+    CONSTRAINT fk_property_image
         FOREIGN KEY (property_id)
         REFERENCES properties(property_id)
         ON DELETE CASCADE
 );
 
--- FEEDBACK
 CREATE TABLE feedback (
     feedback_id INT AUTO_INCREMENT PRIMARY KEY,
     rating INT,
     message TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    unread TINYINT DEFAULT 1
+    created_at DATETIME,
+    unread TINYINT
 );
 
--- INQUIRIES
 CREATE TABLE inquiries (
     inquiry_id INT AUTO_INCREMENT PRIMARY KEY,
     property_id INT,
     name NVARCHAR(255),
     email NVARCHAR(255),
-    title NVARCHAR(255),
     message TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    created_at DATETIME,
+    unread TINYINT,
     CONSTRAINT fk_inquiry_property
         FOREIGN KEY (property_id)
         REFERENCES properties(property_id)
         ON DELETE CASCADE
 );
 
--- Insert default categories
-INSERT INTO categories (name)
-VALUES ('buy'), ('rent'), ('featured');
+INSERT INTO categories (name) VALUES 
+('sell'),
+('buy'),
+('featured');

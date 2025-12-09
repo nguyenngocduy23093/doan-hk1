@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\guest;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Users;
@@ -61,10 +63,12 @@ class RegisterController extends Controller
             'updated_at' => now(),
         ]);
 
+        // Use Laravel's Auth system to log in the user
+        Auth::login($user);
+
         // Lưu thông tin user vào session (tự động đăng nhập sau khi đăng ký)
         // session()->put() = lưu data vào session
         // Session sẽ tồn tại cho đến khi user logout hoặc đóng browser
-        $request->session()->put('user_verified', true);
         $request->session()->put('user_id', $user->user_id);
         $request->session()->put('user_name', $user->name);
         $request->session()->put('user_email', $user->email);
