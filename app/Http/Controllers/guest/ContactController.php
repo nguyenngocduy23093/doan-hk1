@@ -44,7 +44,6 @@ class ContactController extends Controller
             Inquiries::create([
                 'name' => $request -> session() -> get('user_name'),
                 'email' => $request -> session() -> get('user_email'),
-                'title' => $validated['title'],
                 'message' => $validated['message'],
                 'property_id' => $validated['property_id'] ?? null, // ?? null = nếu không có thì để null
                 'created_at' => now(), // Thời gian hiện tại

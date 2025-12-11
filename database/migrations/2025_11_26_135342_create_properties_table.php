@@ -6,34 +6,42 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('properties', function (Blueprint $table) {
-        $table->id();
-        $table->string('title');          // Tên tiêu đề (Search by name/title)
-        $table->text('description');      // Mô tả
-        $table->decimal('price', 15, 2);  // Giá tiền (Filter price range)
-        $table->string('location');       // Địa chỉ (Filter location)
-        
-        // Các cột phục vụ cho bộ lọc (Filter options)
-        $table->enum('type', ['buy', 'rent']); // Mua hay Thuê
-        $table->string('category')->nullable(); // Loại: Apartment, Villa...
-        $table->integer('bedrooms');      // Số phòng ngủ
-        $table->integer('bathrooms');     // Số phòng tắm
-        $table->string('furnishing')->nullable(); // Nội thất (Furnished...)
-        $table->decimal('area', 10, 2)->nullable(); // Diện tích
-        
-        $table->string('image_thumbnail')->nullable(); // Ảnh đại diện
-        $table->timestamps();
+
+            // Khóa chính đúng chuẩn project cũ
+            $table->bigIncrements('property_id');
+
+            // Thông tin cơ bản
+            $table->string('title');
+            $table->text('description')->nullable();
+
+            // Giá tiền
+            $table->decimal('price', 15, 2)->nullable();
+
+            // Địa chỉ
+            $table->string('location')->nullable();
+
+            // Loại giao dịch: Buy / Rent
+            $table->enum('type', ['buy', 'rent']);
+
+            // Category: apartment, villa, house, studio...
+            $table->string('category')->nullable();
+
+            // Thông số nhà
+            $table->integer('bedrooms')->nullable();
+            $table->integer('bathrooms')->nullable();
+            $table->string('furnishing')->nullable();
+            $table->decimal('area', 10, 2)->nullable();
+
+            // Ảnh đại diện (lưu đường dẫn file)
+            $table->string('image_thumbnail')->nullable();
+
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('properties');
