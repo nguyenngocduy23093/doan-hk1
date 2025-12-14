@@ -11,6 +11,6 @@ class Property_Images extends Model
     protected $table = "property_images";
     protected $fillable = [
         "property_id",
-        "image_url",
+        "image",
     ];
 }

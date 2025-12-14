@@ -83,10 +83,10 @@ Route::middleware(['userMiddleware'])->group(function () {
 =========================== */
 
 Route::group(['prefix' => 'admin', 'middleware' => 'adminMiddleware'], function () {
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     // Logout Admin
     Route::get('/logout', function () {
-        session()->forget('admin_verified');
         return redirect('/');
     })->name('admin.logout');
 
@@ -167,4 +167,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminMiddleware'], function 
         Route::post('/delete', [AdminFeedbackController::class, 'destroy'])->name('admin.feedback.delete');
     });
 
+});
+
+// PREVENT 404 ERROR NOT FOUND
+Route::fallback(function () {
+    return redirect('');
 });

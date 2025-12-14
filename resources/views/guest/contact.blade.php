@@ -110,17 +110,6 @@
                 </div>
                 @endif
 
-                <!-- Tiêu đề -->
-                <div class="mb-6 relative">
-                    <label for="title" class="block text-sm font-bold text-gray-700 mb-2 ml-1">Tiêu đề <span class="text-red-500">*</span></label>
-                    <input type="text" id="title" name="title" value="{{ old('title') }}" required
-                           placeholder="Tiêu đề tin nhắn"
-                           class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all text-gray-700 font-medium">
-                    @error('title')
-                        <p class="text-red-500 text-sm mt-1 font-medium flex items-center"><svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>{{ $message }}</p>
-                    @enderror
-                </div>
-
                 <!-- Nội dung -->
                 <div class="mb-8 relative">
                     <label for="message" class="block text-sm font-bold text-gray-700 mb-2 ml-1">Nội dung <span class="text-red-500">*</span></label>

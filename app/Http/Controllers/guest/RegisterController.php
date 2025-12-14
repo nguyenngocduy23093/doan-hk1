@@ -69,6 +69,7 @@ class RegisterController extends Controller
         // Lưu thông tin user vào session (tự động đăng nhập sau khi đăng ký)
         // session()->put() = lưu data vào session
         // Session sẽ tồn tại cho đến khi user logout hoặc đóng browser
+        $request->session()->put('user_verified', true);
         $request->session()->put('user_id', $user->user_id);
         $request->session()->put('user_name', $user->name);
         $request->session()->put('user_email', $user->email);

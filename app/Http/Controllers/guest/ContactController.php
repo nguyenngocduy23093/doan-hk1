@@ -34,7 +34,6 @@ class ContactController extends Controller
 
         if($request -> session() -> has('user_verified')) {
             $validated = $request->validate([
-                'title' => 'required|string|max:255',
                 'message' => 'required|string|max:1000',
                 'property_id' => 'nullable|exists:properties,property_id', // nullable = không bắt buộc, exists = phải tồn tại trong bảng properties
             ]);  
@@ -52,7 +51,6 @@ class ContactController extends Controller
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
-                'title' => 'required|string|max:255',
                 'message' => 'required|string|max:1000',
                 'property_id' => 'nullable|exists:properties,property_id', // nullable = không bắt buộc, exists = phải tồn tại trong bảng properties
             ]);  
@@ -62,7 +60,6 @@ class ContactController extends Controller
             Inquiries::create([
                 'name' => $validated['name'],
                 'email' => $validated['email'],
-                'title' => $validated['title'],
                 'message' => $validated['message'],
                 'property_id' => $validated['property_id'] ?? null, // ?? null = nếu không có thì để null
                 'created_at' => now(), // Thời gian hiện tại
