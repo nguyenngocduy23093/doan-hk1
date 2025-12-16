@@ -62,7 +62,7 @@ class AdminPropertyController extends Controller
 
                 PropertyImage::create([
                     'property_id' => $property->property_id,
-                    'image_path'  => $path // LƯU ĐƯỜNG DẪN
+                    'image'  => $path // LƯU ĐƯỜNG DẪN
                 ]);
             }
         }
@@ -125,7 +125,7 @@ class AdminPropertyController extends Controller
 
                 PropertyImage::create([
                     'property_id' => $property->property_id,
-                    'image_path'  => $path
+                    'image'  => $path
                 ]);
             }
         }

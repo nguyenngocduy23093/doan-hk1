@@ -11,10 +11,10 @@ class PropertyImage extends Model
 
     protected $fillable = [
         'property_id',
-        'image_data',
+        'image',
     ];
 
-    public $timestamps = true;
+    public $timestamps = false;
 
     public function property()
     {
