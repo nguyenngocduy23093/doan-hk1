@@ -9,13 +9,14 @@
     1. HERO SECTION & SEARCH
     =========================================
 --}}
-<div class="relative w-full h-[550px] -mt-4 mb-24 group">
-    {{-- Ảnh nền Banner: Bạn có thể thay link ảnh khác nếu muốn --}}
+{{-- Đã thêm class 'overflow-hidden' vào dòng dưới để cắt bỏ phần ảnh thừa khi phóng to --}}
+<div class="relative w-full h-[550px] -mt-4 mb-24 group overflow-hidden">
+    {{-- Ảnh nền Banner --}}
     <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" 
          style="background-image: url('https://images.unsplash.com/photo-1600596542815-e32cb141d3d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80');">
     </div>
 
-    {{-- Lớp phủ màu Đỏ Gradient (Chủ đạo) --}}
+    {{-- Lớp phủ màu Đỏ Gradient --}}
     <div class="absolute inset-0 bg-gradient-to-br from-red-900/90 via-red-700/80 to-red-500/60 mix-blend-multiply"></div>
     <div class="absolute inset-0 bg-black/20"></div>
 
@@ -28,7 +29,7 @@
             Hàng ngàn bất động sản chất lượng, pháp lý minh bạch đang chờ bạn khám phá ngay hôm nay
         </p>
 
-        {{-- Form Tìm kiếm (Nổi bật) --}}
+        {{-- Form Tìm kiếm --}}
         <div class="w-full max-w-5xl bg-white/95 backdrop-blur-sm p-4 md:p-6 rounded-2xl shadow-2xl transform translate-y-8 md:translate-y-12 border border-white/20">
             <form action="{{ route('search') }}" method="GET" class="flex flex-col md:flex-row gap-4 items-center">
                 
@@ -59,7 +60,6 @@
                 </div>
 
                 {{-- Button Submit --}}
-                {{-- Đã thay đổi background từ gradient sang màu đặc (solid) bg-[#ea2b2b] để đảm bảo không bị mất màu --}}
                 <button type="submit" class="w-full md:w-auto bg-[#ea2b2b] hover:bg-[#d62525] text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-red-500/40 hover:-translate-y-0.5 flex items-center justify-center gap-2">
                     <span>Tìm Kiếm</span>
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
@@ -146,7 +146,7 @@
 
     {{-- 
         =========================================
-        3. BẤT ĐỘNG SẢN CHO THUÊ (LAYOUT TƯƠNG TỰ)
+        3. BẤT ĐỘNG SẢN CHO THUÊ
         =========================================
     --}}
     @if($rentProperties->count() > 0)
@@ -206,7 +206,7 @@
 
     {{-- 
         =========================================
-        4. BẤT ĐỘNG SẢN BÁN (LAYOUT TƯƠNG TỰ)
+        4. BẤT ĐỘNG SẢN BÁN
         =========================================
     --}}
     @if($buyProperties->count() > 0)
