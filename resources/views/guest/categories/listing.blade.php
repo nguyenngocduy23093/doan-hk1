@@ -84,12 +84,10 @@
             {{-- Image Container --}}
             <div class="relative h-60 overflow-hidden">
                 <img 
-                            src="{{ $property->main_image ? asset('storage/' . $property->main_image) : 'https://via.placeholder.com/400x300' }}"
-                            alt="{{ $property->title }}"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                        />
-                     alt="{{ $property->title }}" 
-                     class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out">
+                    src="{{ $property->main_image ? asset($property->main_image) : 'https://via.placeholder.com/400x300' }}"
+                    alt="{{ $property->title }}"
+                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                />
                 
                 <div class="absolute top-3 left-3">
                      @if($category == 'rent')
