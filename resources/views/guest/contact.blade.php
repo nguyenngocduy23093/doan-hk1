@@ -72,63 +72,37 @@
         3. FORM LIÊN HỆ (Form Section)
         =========================================
     --}}
-    <div class="max-w-4xl mx-auto">
-        <div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 relative overflow-hidden">
-            {{-- Trang trí background form --}}
-            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-600 via-red-500 to-orange-400"></div>
-            
-            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center flex items-center justify-center gap-3">
-                <span class="bg-red-100 p-2 rounded-xl">✉️</span> Gửi tin nhắn cho chúng tôi
-            </h2>
-            
-            <form action="{{ route('inquiry.send') }}" method="POST">
-                @csrf
+    @if (session('user_verified'))
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 relative overflow-hidden">
+                {{-- Trang trí background form --}}
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-600 via-red-500 to-orange-400"></div>
                 
-                @if(!session('user_verified'))
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-                    <!-- Họ tên -->
-                    <div class="relative">
-                        <label for="name" class="block text-sm font-bold text-gray-700 mb-2 ml-1">Họ và tên <span class="text-red-500">*</span></label>
-                        <input type="text" id="name" name="name" value="{{ old('name') }}" required
-                               placeholder="Nhập họ tên của bạn"
-                               class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all text-gray-700 font-medium">
-                        @error('name')
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center flex items-center justify-center gap-3">
+                    <span class="bg-red-100 p-2 rounded-xl">✉️</span> Gửi tin nhắn cho chúng tôi
+                </h2>
+                <form action="{{ route('inquiry.send') }}" method="POST">
+                    @csrf
+                    <!-- Nội dung -->
+                    <div class="mb-8 relative">
+                        <label for="message" class="block text-sm font-bold text-gray-700 mb-2 ml-1">Nội dung <span class="text-red-500">*</span></label>
+                        <textarea id="message" name="message" rows="5" required
+                                placeholder="Nhập nội dung tin nhắn của bạn..."
+                                class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all resize-none text-gray-700 font-medium">{{ old('message') }}</textarea>
+                        @error('message')
                             <p class="text-red-500 text-sm mt-1 font-medium flex items-center"><svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>{{ $message }}</p>
                         @enderror
                     </div>
 
-                    <!-- Email -->
-                    <div class="relative">
-                        <label for="email" class="block text-sm font-bold text-gray-700 mb-2 ml-1">Email <span class="text-red-500">*</span></label>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}" required
-                               placeholder="example@email.com"
-                               class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all text-gray-700 font-medium">
-                        @error('email')
-                            <p class="text-red-500 text-sm mt-1 font-medium flex items-center"><svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-                @endif
-
-                <!-- Nội dung -->
-                <div class="mb-8 relative">
-                    <label for="message" class="block text-sm font-bold text-gray-700 mb-2 ml-1">Nội dung <span class="text-red-500">*</span></label>
-                    <textarea id="message" name="message" rows="5" required
-                              placeholder="Nhập nội dung tin nhắn của bạn..."
-                              class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-all resize-none text-gray-700 font-medium">{{ old('message') }}</textarea>
-                    @error('message')
-                        <p class="text-red-500 text-sm mt-1 font-medium flex items-center"><svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <!-- Submit Button (Đã sửa background thành màu solid) -->
-                <button type="submit" class="w-full bg-[#ea2b2b] hover:bg-[#d62525] text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-red-500/40 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                    Gửi tin nhắn ngay
-                </button>
-            </form>
-        </div>
-    </div>
+                    <!-- Submit Button (Đã sửa background thành màu solid) -->
+                    <button type="submit" class="w-full bg-[#ea2b2b] hover:bg-[#d62525] text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-red-500/40 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                        Gửi tin nhắn ngay
+                    </button>
+                </form>
+            </div>
+        </div>            
+    @endif
 </div>
 
 @endsection
