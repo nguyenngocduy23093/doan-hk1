@@ -31,9 +31,9 @@ class SearchController extends Controller
             // where() với function = tạo group điều kiện (title LIKE hoặc location LIKE)
             // orWhere = điều kiện OR
             // '%'.$keyword.'%' = tìm kiếm có chứa keyword (ví dụ: 'nhà' tìm được 'nhà đẹp', 'bán nhà')
-            $query->where(function($q) use ($keyword) {
-                $q->where('title', 'LIKE', '%'.$keyword.'%')
-                  ->orWhere('location', 'LIKE', '%'.$keyword.'%');
+            $query->where(function ($q) use ($keyword) {
+                $q->where('title', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('location', 'LIKE', '%' . $keyword . '%');
             });
         }
 
@@ -78,8 +78,8 @@ class SearchController extends Controller
         }
 
         // FILTER 8: Lọc theo tình trạng nội thất (furnished/unfurnished)
-        if ($request->filled('furnishing')) {
-            $query->where('furnishing', $request->furnishing);
+        if ($request->filled('furnished')) {
+            $query->where('furnished', $request->furnished);
         }
 
         // Sắp xếp kết quả
