@@ -11,7 +11,7 @@ use App\Http\Controllers\guest\ContactController;
 use App\Http\Controllers\user\SettingsController;
 use App\Http\Controllers\guest\PropertyController;
 use App\Http\Controllers\guest\RegisterController;
-use App\Http\Controllers\guest\FeedbackController;
+use App\Http\Controllers\user\FeedbackController;
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
