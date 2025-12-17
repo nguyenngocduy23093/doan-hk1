@@ -54,7 +54,7 @@ CREATE TABLE feedback (
     rating INT,
     message TEXT,
     created_at DATETIME,
-    unread TINYINT
+    unread TINYINT DEFAULT 1
 );
 
 CREATE TABLE inquiries (
@@ -65,7 +65,7 @@ CREATE TABLE inquiries (
     title NVARCHAR(255),
     message TEXT,
     created_at DATETIME,
-    unread TINYINT,
+    unread TINYINT DEFAULT 1,
     CONSTRAINT fk_inquiry_property
         FOREIGN KEY (property_id)
         REFERENCES properties(property_id)

@@ -43,7 +43,7 @@
                 <td>{{ $p->category }}</td>
 
                 <td>
-                    @if($p->type == 'buy')
+                    @if($p->category == 'buy')
                         <span class="badge text-bg-success">Mua</span>
                     @else
                         <span class="badge text-bg-info">Thuê</span>

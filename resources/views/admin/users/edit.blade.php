@@ -57,8 +57,8 @@
             <div class="mb-3">
                 <label class="form-label">Vai trò</label>
                 <select name="role" class="form-select">
-                    <option value="0" @selected($user->role == 0)>User</option>
-                    <option value="1" @selected($user->role == 1)>Admin</option>
+                    <option value="0" @selected($user->role == "user")>User</option>
+                    <option value="1" @selected($user->role == "admin")>Admin</option>
                 </select>
             </div>
 
